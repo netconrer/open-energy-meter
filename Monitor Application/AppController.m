@@ -10,7 +10,8 @@
 @synthesize channel1RMS;
 @synthesize channel0ADC;
 @synthesize channel1ADC;
-
+@synthesize kilowattHours;
+@synthesize	voltAmps;
 
 
 
@@ -177,7 +178,6 @@
 	switch (packetBytes[0]) {
 		case 0x72:
 			[self explodeValuesPacket:packetData];
-			NSLog(@"Received values packet");
 			break;
 		default:
 			NSLog(@"Unknown packet type");
@@ -199,7 +199,10 @@
 	[self setChannel0RMS:tempFloat];
   [packet getBytes:&tempFloat range: NSMakeRange(13,4)];
 	[self setChannel1RMS:tempFloat];
-  
+	[packet getBytes:&tempFloat range: NSMakeRange(17,4)];
+	[self setKilowattHours:joulesToKWHours(tempFloat)];
+	[packet getBytes:&tempFloat range: NSMakeRange(21,4)];
+	[self setVoltAmps:tempFloat];
 }
 
 
