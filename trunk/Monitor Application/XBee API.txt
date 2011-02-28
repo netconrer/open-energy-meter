@@ -1,0 +1,7 @@
+
+Send request:
+
+	Start	|Length		|API ID	|FramID	|64-Bit Address							|16-Bit Net	|Radius	|Option	|Data	|Checksum
+	0	|1	2	|3	|4	|5	6	7	8	9	12	11	12	|13	14	|15	|16     |17..n  |n+1
+		|MSB	LSB	|	|	|MSB							LSB	|MSB	LSB	|       |       |       |
+	0x7E	|		|0x10	|	|								|		|0	|0      |       |0xFF-Sum(3..n) 
