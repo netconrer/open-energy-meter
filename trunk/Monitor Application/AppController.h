@@ -1,10 +1,8 @@
-#define toDeg(x) (x*57.2957795131)  // *180/pi
+#define joulesToKWHours(x) (x/3600000)  // 1 Kilowatt Hour == 3.6 Megajoules
 
 #import <Cocoa/Cocoa.h>
 #import "AMSerialPort.h"
-#import <Quartz/Quartz.h>
 #import "XBeeAPIParser.h"
-//#import <CorePlot/CorePlot.h>
 #import "ConsoleWindowController.h"
 
 
@@ -23,10 +21,6 @@
   ConsoleWindowController           *consoleWindowController;
 
   
-  float                             proportionalGain;
-  float                             integralGain;
-  float                             derivativeGain;  
-  
 	bool                              serialPortConnected;
 	int                               loopbacksSent;
 	int                               loopbacksReceived;
@@ -34,6 +28,8 @@
   float                             channel1RMS;
   int                               channel0ADC;  
   int                               channel1ADC;
+  float                             kilowattHours;
+  float                             voltAmps;
 }
 
 - (void)closePort;
@@ -46,6 +42,8 @@
 @property           float           channel1RMS;
 @property           int             channel0ADC;
 @property           int             channel1ADC;
+@property           float           kilowattHours;
+@property           float           voltAmps;
 
 @property (retain)  AMSerialPort    *port;
 
