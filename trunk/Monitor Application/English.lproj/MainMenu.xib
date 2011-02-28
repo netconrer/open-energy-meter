@@ -1543,12 +1543,12 @@
 											<string/>
 											<integer value="1"/>
 											<integer value="0"/>
-											<string>#,##0.0</string>
+											<string>#,##0.00</string>
 											<string>+∞</string>
 										</object>
 									</object>
-									<string key="NS.positiveformat">#,##0.0</string>
-									<string key="NS.negativeformat">#,##0.0</string>
+									<string key="NS.positiveformat">#,##0.00</string>
+									<string key="NS.negativeformat">#,##0.00</string>
 									<nil key="NS.positiveattrs"/>
 									<nil key="NS.negativeattrs"/>
 									<nil key="NS.zero"/>
