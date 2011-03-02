@@ -3,8 +3,8 @@
 #import <Cocoa/Cocoa.h>
 #import "AMSerialPort.h"
 #import "XBeeAPIParser.h"
-#import "ConsoleWindowController.h"
-
+#import "ConsoleController.h"
+#import "PreferenceController.h"
 
 @interface AppController : NSObject {
 	IBOutlet NSTextView               *outputTextView;
@@ -18,7 +18,8 @@
 	AMSerialPort                      *port;
 	NSArray                           *speedArray;
 	XBeeAPIParser                     *xbeeParser;
-  ConsoleWindowController           *consoleWindowController;
+  ConsoleController                 *consoleController;
+  PreferenceController              *preferenceController;
 
   
 	bool                              serialPortConnected;
@@ -34,7 +35,8 @@
 
 - (void)closePort;
 - (IBAction)connectDisconnect:(id)sender;
-- (IBAction)consoleWindowShow:(id)sender;
+- (IBAction)showConsoleWindow:(id)sender;
+- (IBAction)showPreferencePanel:(id)sender;
 - (void)explodeValuesPacket:(NSData *)packet;
 
 @property           bool            serialPortConnected;

@@ -169,11 +169,14 @@
 	NSData *packetData = [dataDictionary objectForKey:@"data"];
 	const unsigned char *packetBytes = [packetData bytes];
 	unsigned i;
-	for (i=0; i<[packetData length]; i++) {
-		[stringToPrint appendFormat:@"%02X ", packetBytes[i]];
+	
+	if (consoleController) {
+		for (i=0; i<[packetData length]; i++) {
+			[stringToPrint appendFormat:@"%02X ", packetBytes[i]];
+		}
+		[stringToPrint appendFormat:@"\n"];
+		[consoleController appendConsoleText:stringToPrint];
 	}
-	[stringToPrint appendFormat:@"\n"];
-	[consoleWindowController appendConsoleText:stringToPrint];
 	
 	switch (packetBytes[0]) {
 		case 0x72:
@@ -263,6 +266,7 @@
 
 - (IBAction)connectDisconnect:(id)sender	
 {
+	
 	if (![port isOpen])  {
 		[self initPort];
 	} else {
@@ -271,12 +275,19 @@
 	}
 }
 
-- (IBAction)consoleWindowShow:(id)sender 
+- (IBAction)showConsoleWindow:(id)sender 
 {
-	if (!consoleWindowController) {
-		consoleWindowController = [[ConsoleWindowController alloc] init];
-	}
-	[consoleWindowController showWindow:self];
+	if (!consoleController) {
+		consoleController = [[ConsoleController alloc] init];		
+	}	
+	[consoleController showWindow:self];
 }
 
+- (IBAction)showPreferencePanel:(id)sender;
+{
+	if (!preferenceController) {
+		preferenceController = [[PreferenceController alloc] init];
+	}
+	[preferenceController showWindow:self];
+}
 @end
