@@ -6,6 +6,10 @@
 //  Copyright 2011 Chasing 'trons. All rights reserved.
 //
 
+static NSString * const CURRENT_PLOT = @"Current Plot";
+static NSString * const VOLTAGE_PLOT = @"Voltage Plot";
+static NSString * const ENERGY_PLOT  = @"Energy Plot";
+
 #import <CorePlot/CorePlot.h>
 #import "PlotsController.h"
 
@@ -52,12 +56,12 @@
 	y.orthogonalCoordinateDecimal = CPDecimalFromFloat(-100);
 	
 	// Create a plot that uses the data source method
-	dataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
-	dataSourceLinePlot.identifier = @"Date Plot";
-	dataSourceLinePlot.dataLineStyle.lineWidth = 2.f;
-	dataSourceLinePlot.dataLineStyle.lineColor = [CPColor greenColor];
-	dataSourceLinePlot.dataSource = self;
-	[currentPlot addPlot:dataSourceLinePlot];
+	currentDataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
+	currentDataSourceLinePlot.identifier = CURRENT_PLOT;
+	currentDataSourceLinePlot.dataLineStyle.lineWidth = 2.f;
+	currentDataSourceLinePlot.dataLineStyle.lineColor = [CPColor blueColor];
+	currentDataSourceLinePlot.dataSource = self;
+	[currentPlot addPlot:currentDataSourceLinePlot];
 }
 
 #pragma mark -
@@ -65,20 +69,31 @@
 
 -(NSUInteger)numberOfRecordsForPlot:(CPPlot *)plot
 {
-	return currentPlotData.count;
+	NSUInteger count = 0;
+	
+	if ([(NSString *)plot.identifier isEqualToString:CURRENT_PLOT]) {
+		count = [currentPlotData count];
+		NSLog(@"%i", count);
+	}
+	return count;
 }
 
 -(NSNumber *)numberForPlot:(CPPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
 {
-	NSDecimalNumber *num = [[currentPlotData objectAtIndex:index] objectForKey:[NSNumber numberWithInt:fieldEnum]];
-	return num;
+	if ([(NSString *)plot.identifier isEqualToString:CURRENT_PLOT]) {
+		return [[currentPlotData objectAtIndex:index] objectForKey:[NSNumber numberWithInt:fieldEnum]];
+	} else if ([(NSString *)plot.identifier isEqualToString:VOLTAGE_PLOT]) {
+		return [[voltagePlotData objectAtIndex:index] objectForKey:[NSNumber numberWithInt:fieldEnum]];
+	} else if ([(NSString *)plot.identifier isEqualToString:ENERGY_PLOT]) {
+		return [[currentPlotData objectAtIndex:index] objectForKey:[NSNumber numberWithInt:fieldEnum]];
+	}
+	return nil;
 }
 
 - (void)addNewData:(NSData *)data
 {
 	short tempInt;
 	int i;
-	//NSMutableArray *newData = [NSMutableArray array];
 	for (i = 1; i < [data length]; i += 2)
 	{
 		[data getBytes:&tempInt range: NSMakeRange(i,2)];
@@ -110,7 +125,7 @@
 
 - (void)reloadData
 {
-	[dataSourceLinePlot reloadData];
+	[currentDataSourceLinePlot reloadData];
 }
 
 @end
