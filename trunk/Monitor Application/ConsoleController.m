@@ -33,10 +33,21 @@
 	[outputTextView setString:@""];
 }
 
-- (void)appendConsoleText:(NSString *)text;
+- (void)appendConsoleText:(NSString *)text
 {
 	[outputTextView insertText:text];
 	[outputTextView displayIfNeeded];
 }
+
+- (bool)consoleWindowIsVisable
+{
+	return [consoleWindow isVisible];
+}
+
+- (void)hideConsoleWindow
+{
+	[consoleWindow close];
+}
+
 
 @end
