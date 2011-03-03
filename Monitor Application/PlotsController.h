@@ -17,8 +17,12 @@
 	CPXYGraph															*voltagePlot;
 	CPXYGraph															*energyPlot;
 	NSArray																*currentPlotData;
+	NSArray																*voltagePlotData;
+	NSArray																*energyPlotData;	
 	NSMutableArray												*currentRawData;
-	CPScatterPlot													*dataSourceLinePlot;
+	NSMutableArray												*voltageRawData;
+	NSMutableArray												*energyRawData;
+	CPScatterPlot													*currentDataSourceLinePlot;
 	CPXYPlotSpace													*currentPlotSpace;
 	CPXYPlotSpace													*voltagePlotSpace;
 	CPXYPlotSpace													*energyPlotSpace;
