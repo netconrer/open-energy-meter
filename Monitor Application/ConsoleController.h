@@ -12,9 +12,12 @@
 @interface ConsoleController : NSWindowController {
 	IBOutlet NSTextView *outputTextView;
 	IBOutlet NSButton		*clearButton;
+	IBOutlet NSWindow   *consoleWindow;
 }
 
 - (IBAction)clearOutputTextView:(id)sender;
 - (void)appendConsoleText:(NSString *)text;
+- (bool)consoleWindowIsVisable;
+- (void)hideConsoleWindow;
 
 @end

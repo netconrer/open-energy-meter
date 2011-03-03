@@ -5,6 +5,7 @@
 #import "XBeeAPIParser.h"
 #import "ConsoleController.h"
 #import "PreferenceController.h"
+#import "WaveformWindowController.h"
 
 @interface AppController : NSObject {
 	IBOutlet NSTextView               *outputTextView;
@@ -20,6 +21,7 @@
 	XBeeAPIParser                     *xbeeParser;
   ConsoleController                 *consoleController;
   PreferenceController              *preferenceController;
+  WaveformWindowController          *waveformWindowController;
 
   
 	bool                              serialPortConnected;
@@ -37,6 +39,7 @@
 - (IBAction)connectDisconnect:(id)sender;
 - (IBAction)showConsoleWindow:(id)sender;
 - (IBAction)showPreferencePanel:(id)sender;
+- (IBAction)showWaveformWIndow:(id)sender;
 - (void)explodeValuesPacket:(NSData *)packet;
 
 @property           bool            serialPortConnected;

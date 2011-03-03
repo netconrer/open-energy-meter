@@ -182,6 +182,9 @@
 		case 0x72:
 			[self explodeValuesPacket:packetData];
 			break;
+		case 0x63:
+			[waveformWindowController addNewData:packetData];
+			break;
 		default:
 			NSLog(@"Unknown packet type");
 			break;
@@ -207,8 +210,6 @@
 	[packet getBytes:&tempFloat range: NSMakeRange(21,4)];
 	[self setVoltAmps:tempFloat];
 }
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -279,15 +280,26 @@
 {
 	if (!consoleController) {
 		consoleController = [[ConsoleController alloc] init];		
-	}	
+	}	 else if (consoleController && [consoleController consoleWindowIsVisable]) {
+		[consoleController hideConsoleWindow];
+		return;
+	}
 	[consoleController showWindow:self];
 }
 
-- (IBAction)showPreferencePanel:(id)sender;
+- (IBAction)showPreferencePanel:(id)sender
 {
 	if (!preferenceController) {
 		preferenceController = [[PreferenceController alloc] init];
 	}
 	[preferenceController showWindow:self];
+}
+
+- (IBAction)showWaveformWIndow:(id)sender
+{
+	if (!waveformWindowController) {
+		waveformWindowController = [[WaveformWindowController alloc] init];
+	}
+	[waveformWindowController showWindow:self];
 }
 @end
