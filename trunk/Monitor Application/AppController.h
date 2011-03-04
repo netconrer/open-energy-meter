@@ -6,6 +6,8 @@
 #import "ConsoleController.h"
 #import "PreferenceController.h"
 #import "WaveformWindowController.h"
+#import "PlotsController.h"
+#import "CorePlot/CorePlot.h"
 
 @interface AppController : NSObject {
 	IBOutlet NSTextView               *outputTextView;
@@ -15,6 +17,7 @@
 	IBOutlet NSWindow                 *mainWindow;
 	IBOutlet NSProgressIndicator      *connectionIndicator;
   IBOutlet NSButton                 *consoleWindowShowButton;
+  IBOutlet PlotsController          *plotsController;
 
 	AMSerialPort                      *port;
 	NSArray                           *speedArray;

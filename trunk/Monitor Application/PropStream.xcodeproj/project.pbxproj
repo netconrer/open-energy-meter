@@ -11,9 +11,18 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		C07DC98A1316FC960055B527 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07DC9891316FC960055B527 /* QuartzCore.framework */; };
-		C086F16E131846340046BD34 /* ConsoleWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C086F16D131846340046BD34 /* ConsoleWindowController.m */; };
-		C0A40F2B1318414C00B5916B /* Console.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A40F2A1318414C00B5916B /* Console.xib */; };
+		C00177ED131EF77400A66176 /* Waveform.xib in Resources */ = {isa = PBXBuildFile; fileRef = C00177EC131EF77400A66176 /* Waveform.xib */; };
+		C01B9415131EB7D8002FA7E9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01B9414131EB7D8002FA7E9 /* QuartzCore.framework */; };
+		C01B94C2131EBF79002FA7E9 /* CorePlot.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C01B934E131EAEEF002FA7E9 /* CorePlot.framework */; };
+		C01B94C6131EC005002FA7E9 /* CorePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01B934E131EAEEF002FA7E9 /* CorePlot.framework */; };
+		C01B94DB131EC127002FA7E9 /* WaveformController.m in Sources */ = {isa = PBXBuildFile; fileRef = C01B94DA131EC127002FA7E9 /* WaveformController.m */; };
+		C01B94FC131EC25A002FA7E9 /* WaveformWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C01B94FB131EC25A002FA7E9 /* WaveformWindowController.m */; };
+		C01E82FD13200E6200DD6824 /* PlotsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C01E82FC13200E6200DD6824 /* PlotsController.m */; };
+		C0636D9A131C92FB001C3C6F /* Meter.icns in Resources */ = {isa = PBXBuildFile; fileRef = C0636D99131C92FB001C3C6F /* Meter.icns */; };
+		C082F886131C533E004F2B9C /* Console.xib in Resources */ = {isa = PBXBuildFile; fileRef = C082F885131C533E004F2B9C /* Console.xib */; };
+		C086F16E131846340046BD34 /* ConsoleController.m in Sources */ = {isa = PBXBuildFile; fileRef = C086F16D131846340046BD34 /* ConsoleController.m */; };
+		C0DFB2F6131C82480086EC36 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DFB2F5131C82480086EC36 /* PreferenceController.m */; };
+		C0DFB2FA131C82A30086EC36 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0DFB2F9131C82A30086EC36 /* Preferences.xib */; };
 		D30D84740EFBD353005D3110 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = D30D84720EFBD353005D3110 /* AppController.m */; };
 		D30D84830EFBD365005D3110 /* AMStandardEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D30D84750EFBD365005D3110 /* AMStandardEnumerator.m */; };
 		D30D84840EFBD365005D3110 /* AMSerialPort_Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = D30D84790EFBD365005D3110 /* AMSerialPort_Deprecated.m */; };
@@ -24,9 +33,45 @@
 		D32407840F01CD5800F5EB8E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32407830F01CD5800F5EB8E /* IOKit.framework */; };
 		D324078B0F01CD8500F5EB8E /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D324078A0F01CD8500F5EB8E /* Quartz.framework */; };
 		D33E0FB00F5CD3B300BE3EC1 /* XBeeAPIParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D33E0FAF0F5CD3B300BE3EC1 /* XBeeAPIParser.m */; };
-		D3BFE6330F05211900CC8085 /* Horizon.qtz in Resources */ = {isa = PBXBuildFile; fileRef = D3BFE6320F05211900CC8085 /* Horizon.qtz */; };
 		D3C67AC00F25FFEC00B5CF9B /* GraphKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C67ABF0F25FFEC00B5CF9B /* GraphKit.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C01B934D131EAEEF002FA7E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C01B9344131EAEEF002FA7E9 /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = CorePlot;
+		};
+		C01B934F131EAEEF002FA7E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C01B9344131EAEEF002FA7E9 /* CorePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0730F600109492D800E95162;
+			remoteInfo = UnitTests;
+		};
+		C01B94C4131EBFE6002FA7E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C01B9344131EAEEF002FA7E9 /* CorePlot.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = CorePlot;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C01B94C1131EBF6F002FA7E9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "Users/jaykickliter/Projects/Energy Meter/Monitor Application/build/Release/CorePlot.framework";
+			dstSubfolderSpec = 10;
+			files = (
+				C01B94C2131EBF79002FA7E9 /* CorePlot.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -38,11 +83,23 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* PropStream_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropStream_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* XBee Explorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "XBee Explorer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C07DC9891316FC960055B527 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C086F16C131846340046BD34 /* ConsoleWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleWindowController.h; sourceTree = "<group>"; };
-		C086F16D131846340046BD34 /* ConsoleWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleWindowController.m; sourceTree = "<group>"; };
-		C0A40F2A1318414C00B5916B /* Console.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Console.xib; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* Open Power Meter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open Power Meter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C00177EC131EF77400A66176 /* Waveform.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Waveform.xib; sourceTree = "<group>"; };
+		C01B9344131EAEEF002FA7E9 /* CorePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlot.xcodeproj; path = "../../CorePlot 0.2.2/Source/framework/CorePlot.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		C01B9414131EB7D8002FA7E9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C01B94D9131EC127002FA7E9 /* WaveformController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveformController.h; sourceTree = "<group>"; };
+		C01B94DA131EC127002FA7E9 /* WaveformController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveformController.m; sourceTree = "<group>"; };
+		C01B94FA131EC25A002FA7E9 /* WaveformWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveformWindowController.h; sourceTree = "<group>"; };
+		C01B94FB131EC25A002FA7E9 /* WaveformWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveformWindowController.m; sourceTree = "<group>"; };
+		C01E82FB13200E6200DD6824 /* PlotsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotsController.h; sourceTree = "<group>"; };
+		C01E82FC13200E6200DD6824 /* PlotsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotsController.m; sourceTree = "<group>"; };
+		C0636D99131C92FB001C3C6F /* Meter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Meter.icns; sourceTree = "<group>"; };
+		C082F885131C533E004F2B9C /* Console.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Console.xib; sourceTree = "<group>"; };
+		C086F16C131846340046BD34 /* ConsoleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleController.h; sourceTree = "<group>"; };
+		C086F16D131846340046BD34 /* ConsoleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleController.m; sourceTree = "<group>"; };
+		C0DFB2F4131C82480086EC36 /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
+		C0DFB2F5131C82480086EC36 /* PreferenceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceController.m; sourceTree = "<group>"; };
+		C0DFB2F9131C82A30086EC36 /* Preferences.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		D30D84720EFBD353005D3110 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		D30D84730EFBD353005D3110 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		D30D84750EFBD365005D3110 /* AMStandardEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMStandardEnumerator.m; sourceTree = "<group>"; };
@@ -63,7 +120,6 @@
 		D324078A0F01CD8500F5EB8E /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
 		D33E0FAE0F5CD3B300BE3EC1 /* XBeeAPIParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBeeAPIParser.h; sourceTree = "<group>"; };
 		D33E0FAF0F5CD3B300BE3EC1 /* XBeeAPIParser.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; lineEnding = 1; path = XBeeAPIParser.m; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 0; };
-		D3BFE6320F05211900CC8085 /* Horizon.qtz */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = Horizon.qtz; sourceTree = "<group>"; };
 		D3C67ABF0F25FFEC00B5CF9B /* GraphKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GraphKit.framework; path = System/Library/PrivateFrameworks/GraphKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -72,11 +128,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C01B94C6131EC005002FA7E9 /* CorePlot.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				D32407840F01CD5800F5EB8E /* IOKit.framework in Frameworks */,
 				D324078B0F01CD8500F5EB8E /* Quartz.framework in Frameworks */,
 				D3C67AC00F25FFEC00B5CF9B /* GraphKit.framework in Frameworks */,
-				C07DC98A1316FC960055B527 /* QuartzCore.framework in Frameworks */,
+				C01B9415131EB7D8002FA7E9 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,10 +145,18 @@
 			children = (
 				D30D84730EFBD353005D3110 /* AppController.h */,
 				D30D84720EFBD353005D3110 /* AppController.m */,
+				C01B94D9131EC127002FA7E9 /* WaveformController.h */,
+				C01E82FB13200E6200DD6824 /* PlotsController.h */,
+				C01E82FC13200E6200DD6824 /* PlotsController.m */,
+				C01B94DA131EC127002FA7E9 /* WaveformController.m */,
 				D33E0FAE0F5CD3B300BE3EC1 /* XBeeAPIParser.h */,
 				D33E0FAF0F5CD3B300BE3EC1 /* XBeeAPIParser.m */,
-				C086F16C131846340046BD34 /* ConsoleWindowController.h */,
-				C086F16D131846340046BD34 /* ConsoleWindowController.m */,
+				C086F16C131846340046BD34 /* ConsoleController.h */,
+				C086F16D131846340046BD34 /* ConsoleController.m */,
+				C0DFB2F4131C82480086EC36 /* PreferenceController.h */,
+				C0DFB2F5131C82480086EC36 /* PreferenceController.m */,
+				C01B94FA131EC25A002FA7E9 /* WaveformWindowController.h */,
+				C01B94FB131EC25A002FA7E9 /* WaveformWindowController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -100,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				C07DC9891316FC960055B527 /* QuartzCore.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -114,6 +178,7 @@
 				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
 				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
 				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				C01B9414131EB7D8002FA7E9 /* QuartzCore.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -121,7 +186,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* XBee Explorer.app */,
+				8D1107320486CEB800E47090 /* Open Power Meter.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,12 +194,12 @@
 		29B97314FDCFA39411CA2CEA /* PropStream */ = {
 			isa = PBXGroup;
 			children = (
+				C01B9344131EAEEF002FA7E9 /* CorePlot.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				C0A40F2A1318414C00B5916B /* Console.xib */,
 			);
 			name = PropStream;
 			sourceTree = "<group>";
@@ -152,10 +217,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D3BFE6320F05211900CC8085 /* Horizon.qtz */,
+				C0636D99131C92FB001C3C6F /* Meter.icns */,
+				C082F885131C533E004F2B9C /* Console.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				C00177EC131EF77400A66176 /* Waveform.xib */,
+				C0DFB2F9131C82A30086EC36 /* Preferences.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -167,6 +235,15 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C01B9345131EAEEF002FA7E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C01B934E131EAEEF002FA7E9 /* CorePlot.framework */,
+				C01B9350131EAEEF002FA7E9 /* UnitTests.octest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		C0D116D912C0F69E005992B3 /* AMSerialPort */ = {
@@ -193,10 +270,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* PropStream */ = {
+		8D1107260486CEB800E47090 /* Open Power Monitor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "PropStream" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Open Power Monitor" */;
 			buildPhases = (
+				C01B94C1131EBF6F002FA7E9 /* CopyFiles */,
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
@@ -204,11 +282,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				C01B94C5131EBFE6002FA7E9 /* PBXTargetDependency */,
 			);
-			name = PropStream;
+			name = "Open Power Monitor";
 			productInstallPath = "$(HOME)/Applications";
 			productName = PropStream;
-			productReference = 8D1107320486CEB800E47090 /* XBee Explorer.app */;
+			productReference = 8D1107320486CEB800E47090 /* Open Power Meter.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -231,12 +310,35 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* PropStream */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C01B9345131EAEEF002FA7E9 /* Products */;
+					ProjectRef = C01B9344131EAEEF002FA7E9 /* CorePlot.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* PropStream */,
+				8D1107260486CEB800E47090 /* Open Power Monitor */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C01B934E131EAEEF002FA7E9 /* CorePlot.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CorePlot.framework;
+			remoteRef = C01B934D131EAEEF002FA7E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C01B9350131EAEEF002FA7E9 /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = C01B934F131EAEEF002FA7E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8D1107290486CEB800E47090 /* Resources */ = {
@@ -245,8 +347,10 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				D3BFE6330F05211900CC8085 /* Horizon.qtz in Resources */,
-				C0A40F2B1318414C00B5916B /* Console.xib in Resources */,
+				C082F886131C533E004F2B9C /* Console.xib in Resources */,
+				C0DFB2FA131C82A30086EC36 /* Preferences.xib in Resources */,
+				C0636D9A131C92FB001C3C6F /* Meter.icns in Resources */,
+				C00177ED131EF77400A66176 /* Waveform.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,11 +370,23 @@
 				D30D84870EFBD365005D3110 /* AMSerialPortList_Deprecated.m in Sources */,
 				D30D84880EFBD365005D3110 /* AMSerialPortList.m in Sources */,
 				D33E0FB00F5CD3B300BE3EC1 /* XBeeAPIParser.m in Sources */,
-				C086F16E131846340046BD34 /* ConsoleWindowController.m in Sources */,
+				C086F16E131846340046BD34 /* ConsoleController.m in Sources */,
+				C0DFB2F6131C82480086EC36 /* PreferenceController.m in Sources */,
+				C01B94DB131EC127002FA7E9 /* WaveformController.m in Sources */,
+				C01B94FC131EC25A002FA7E9 /* WaveformWindowController.m in Sources */,
+				C01E82FD13200E6200DD6824 /* PlotsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C01B94C5131EBFE6002FA7E9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CorePlot;
+			targetProxy = C01B94C4131EBFE6002FA7E9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -300,8 +416,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
-					"\"$(SRCROOT)/../../Library/Frameworks\"",
-					"\"$(SRCROOT)/../../Downloads/CorePlot 0.2.2/Binaries/MacOS\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -312,7 +426,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				PRODUCT_NAME = "XBee Explorer";
+				PRODUCT_NAME = "Open Power Meter";
 				SDKROOT = macosx10.6;
 			};
 			name = Debug;
@@ -321,12 +435,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
-					"\"$(SRCROOT)/../../Library/Frameworks\"",
-					"\"$(SRCROOT)/../../Downloads/CorePlot 0.2.2/Binaries/MacOS\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -334,14 +447,17 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				PRODUCT_NAME = "XBee Explorer";
+				PRODUCT_NAME = "Open Energy Monitor";
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"/Users/jaykickliter/Projects/Energy Meter/Monitor Application//**\"",
+				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -357,7 +473,8 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -369,7 +486,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "PropStream" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Open Power Monitor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,

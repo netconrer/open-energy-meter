@@ -26,21 +26,43 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 -(void)awakeFromNib
 {
 	[super awakeFromNib];
-	packets = 0;
 	
-	currentRawData = [[NSMutableArray alloc] init];
+	currentPlotData = [[NSMutableArray alloc] init];
+	voltagePlotData = [[NSMutableArray alloc] init];
+	energyPlotData = [[NSMutableArray alloc] init];
 	
 
 	// Create graph from theme
 	currentPlot = [(CPXYGraph *)[CPXYGraph alloc] initWithFrame:CGRectZero];
+	voltagePlot = [(CPXYGraph *)[CPXYGraph alloc] initWithFrame:CGRectZero];
+	energyPlot = [(CPXYGraph *)[CPXYGraph alloc]  initWithFrame:CGRectZero];
+	
 	CPTheme *theme = [CPTheme themeNamed:kCPSlateTheme];
 	[currentPlot applyTheme:theme];
+	[voltagePlot applyTheme:theme];
+	[energyPlot  applyTheme:theme];
+	
+	
 	currentHostView.hostedLayer = currentPlot;
+	voltageHostView.hostedLayer = voltagePlot;
+	energyHostView.hostedLayer	= energyPlot;
 	
 	// Setup scatter plot space
 	currentPlotSpace = (CPXYPlotSpace *)currentPlot.defaultPlotSpace;
 	currentPlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(0) length:CPDecimalFromInt(99)];
 	currentPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(-2048) length:CPDecimalFromFloat(4096)];
+	
+	// Setup scatter plot space
+	voltagePlotSpace = (CPXYPlotSpace *)voltagePlot.defaultPlotSpace;
+	voltagePlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(0) length:CPDecimalFromInt(99)];
+	voltagePlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(-2048) length:CPDecimalFromFloat(4096)];
+	
+	// Setup scatter plot space
+	energyPlotSpace = (CPXYPlotSpace *)energyPlot.defaultPlotSpace;
+	energyPlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0) length:CPDecimalFromInt(99)];
+	energyPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-0.1) length:CPDecimalFromFloat(2.2)];
+	energyPlotSpace.allowsUserInteraction = YES;
+	energyPlotSpace.delegate = self;
 	
 	// Axes
 	CPXYAxisSet *axisSet = (CPXYAxisSet *)currentPlot.axisSet;
@@ -49,11 +71,45 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	x.orthogonalCoordinateDecimal = CPDecimalFromInt(-6000);
 	x.minorTicksPerInterval = 0;
 	
-	
 	CPXYAxis *y = axisSet.yAxis;
 	y.majorIntervalLength = CPDecimalFromString(@"1000");
 	y.minorTicksPerInterval = 5;
 	y.orthogonalCoordinateDecimal = CPDecimalFromFloat(-100);
+	
+	// Axes
+	axisSet = (CPXYAxisSet *)voltagePlot.axisSet;
+	x = axisSet.xAxis;
+	x.majorIntervalLength = CPDecimalFromString(@"25");
+	x.orthogonalCoordinateDecimal = CPDecimalFromInt(-6000);
+	x.minorTicksPerInterval = 0;
+	
+	y = axisSet.yAxis;
+	y.majorIntervalLength = CPDecimalFromString(@"1");
+	y.minorTicksPerInterval = 5;
+	y.orthogonalCoordinateDecimal = CPDecimalFromFloat(-100);
+	
+	// Axes
+	axisSet = (CPXYAxisSet *)energyPlot.axisSet;
+	x = axisSet.xAxis;
+	x.majorIntervalLength = CPDecimalFromString(@"25");
+	x.orthogonalCoordinateDecimal = CPDecimalFromInt(0);
+	x.minorTicksPerInterval = 0;
+	
+	y = axisSet.yAxis;
+	y.majorIntervalLength = CPDecimalFromString(@"1000");
+	y.minorTicksPerInterval = 5;
+	y.orthogonalCoordinateDecimal = CPDecimalFromFloat(90);
+	
+	
+	
+	
+	// Create a plot that uses the data source method
+	voltageDataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
+	voltageDataSourceLinePlot.identifier = VOLTAGE_PLOT;
+	voltageDataSourceLinePlot.dataLineStyle.lineWidth = 2.f;
+	voltageDataSourceLinePlot.dataLineStyle.lineColor = [CPColor blueColor];
+	voltageDataSourceLinePlot.dataSource = self;
+	[voltagePlot addPlot:voltageDataSourceLinePlot];
 	
 	// Create a plot that uses the data source method
 	currentDataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
@@ -62,10 +118,23 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	currentDataSourceLinePlot.dataLineStyle.lineColor = [CPColor blueColor];
 	currentDataSourceLinePlot.dataSource = self;
 	[currentPlot addPlot:currentDataSourceLinePlot];
+	
+	
+	
+	// Create a plot that uses the data source method
+	energyDataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
+	energyDataSourceLinePlot.identifier = ENERGY_PLOT;
+	energyDataSourceLinePlot.dataLineStyle.lineWidth = 2.f;
+	energyDataSourceLinePlot.dataLineStyle.lineColor = [CPColor blueColor];
+	energyDataSourceLinePlot.dataSource = self;
+	[energyPlot addPlot:energyDataSourceLinePlot];
 }
 
 #pragma mark -
 #pragma mark Plot Data Source Methods
+
+
+
 
 -(NSUInteger)numberOfRecordsForPlot:(CPPlot *)plot
 {
@@ -73,59 +142,111 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	
 	if ([(NSString *)plot.identifier isEqualToString:CURRENT_PLOT]) {
 		count = [currentPlotData count];
-		NSLog(@"%i", count);
+	} else if ([(NSString *)plot.identifier isEqualToString:VOLTAGE_PLOT]) {
+		count = [voltagePlotData count];
+	} else {
+		count = [energyPlotData count];
 	}
+
 	return count;
 }
 
 -(NSNumber *)numberForPlot:(CPPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
 {
+	NSNumber *num = nil;
 	if ([(NSString *)plot.identifier isEqualToString:CURRENT_PLOT]) {
-		return [[currentPlotData objectAtIndex:index] objectForKey:[NSNumber numberWithInt:fieldEnum]];
+		switch (fieldEnum) {
+			case CPScatterPlotFieldX:
+				num = [NSNumber numberWithUnsignedInt:index];
+				break;
+			case CPScatterPlotFieldY:
+				num = [currentPlotData objectAtIndex:index];				
+				break;
+			default:
+				break;
+		}
 	} else if ([(NSString *)plot.identifier isEqualToString:VOLTAGE_PLOT]) {
-		return [[voltagePlotData objectAtIndex:index] objectForKey:[NSNumber numberWithInt:fieldEnum]];
+		switch (fieldEnum) {
+			case CPScatterPlotFieldX:
+				num = [NSNumber numberWithUnsignedInt:index];
+				break;
+			case CPScatterPlotFieldY:
+				num = [voltagePlotData objectAtIndex:index];
+				break;
+			default:
+				break;
+		}
 	} else if ([(NSString *)plot.identifier isEqualToString:ENERGY_PLOT]) {
-		return [[currentPlotData objectAtIndex:index] objectForKey:[NSNumber numberWithInt:fieldEnum]];
+			switch (fieldEnum) {
+				case CPScatterPlotFieldX:
+					num = [NSNumber numberWithUnsignedInt:index];
+					break;
+				case CPScatterPlotFieldY:
+					num = [energyPlotData objectAtIndex:index];
+					break;
+				default:
+					break;
+			}
 	}
-	return nil;
+	
+	return num;
 }
+
+
+
+
 
 - (void)addNewData:(NSData *)data
 {
-	short tempInt;
-	int i;
-	for (i = 1; i < [data length]; i += 2)
-	{
-		[data getBytes:&tempInt range: NSMakeRange(i,2)];
-		id y = [NSDecimalNumber numberWithShort: tempInt];
-		[currentRawData addObject:y];
-	}
-	i = [currentRawData count];
-	if (i > 100) {
-		[currentRawData removeObjectsInRange: NSMakeRange(0, i-100)];
+	short			 tempShort;
+	int				 i;
+	char			 packetType;
+	char			 reloadFlag;
+	NSNumber	 *num = nil;
+	id				 plotDataToUpdate;
+	id				 plotToReload;
+
+	[data getBytes: &packetType range: NSMakeRange(0, 1)];
+	[data getBytes: &reloadFlag range: NSMakeRange(1, 1)];	
+	
+	switch (packetType) {
+		case 0x63:
+			plotDataToUpdate	= currentPlotData;
+			plotToReload			= currentDataSourceLinePlot;
+			break;
+		case 0x76:
+			plotDataToUpdate  = voltagePlotData;
+			plotToReload			=	voltageDataSourceLinePlot;
+			break;
+		default:
+			return;
 	}
 	
-	NSMutableArray *newData = [NSMutableArray array];
-	for ( i = 0; i < [currentRawData count]; i++ ) {			
-		NSTimeInterval x = i;			
-		id y = [currentRawData objectAtIndex:i];			
-		[newData addObject:
-		 [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSDecimalNumber numberWithFloat:x], [NSNumber numberWithInt:CPScatterPlotFieldX], 
-			y, [NSNumber numberWithInt:CPScatterPlotFieldY], 
-			nil]];		
-	}	
-	currentPlotData = newData;
-	packets++;
-	if (packets > 3) {
-		[self reloadData];
-		packets = 0;
+	for (i = 2; i < [data length]; i += 2)
+	{
+		[data getBytes:&tempShort range: NSMakeRange(i,2)];
+		num = [NSNumber numberWithShort: tempShort];
+		[plotDataToUpdate addObject:num];
+	}
+	i = [plotDataToUpdate count];
+	if (i > 100) {
+		[plotDataToUpdate removeObjectsInRange: NSMakeRange(0, i-100)];
+		NSLog(@"%@", plotDataToUpdate);
+	}
+	
+	if (reloadFlag == 1) {
+		[plotToReload reloadData];
 	}
 }
 
-- (void)reloadData
+- (void)addNewEnergyPlotPoint:(float)value
 {
-	[currentDataSourceLinePlot reloadData];
+	NSNumber *num = [NSNumber numberWithFloat: value/1000];
+	[energyPlotData addObject: num];
+	[energyDataSourceLinePlot reloadData];
 }
+
+
+
 
 @end

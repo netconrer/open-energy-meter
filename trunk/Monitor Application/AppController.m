@@ -151,7 +151,7 @@
 	return nil;
 }
 
-- (int)numberOfItemsInComboBox:(NSComboBox *)aComboBox
+- (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
 {
 	if (aComboBox == speedComboBox) {
 		return [speedArray count];
@@ -183,7 +183,10 @@
 			[self explodeValuesPacket:packetData];
 			break;
 		case 0x63:
-			[waveformWindowController addNewData:packetData];
+			[plotsController addNewData:packetData];
+			break;
+		case 0x76:
+			[plotsController addNewData:packetData];
 			break;
 		default:
 			NSLog(@"Unknown packet type");
@@ -209,6 +212,8 @@
 	[self setKilowattHours:joulesToKWHours(tempFloat)];
 	[packet getBytes:&tempFloat range: NSMakeRange(21,4)];
 	[self setVoltAmps:tempFloat];
+	
+	[plotsController addNewEnergyPlotPoint: tempFloat];
 }
 
 
@@ -235,7 +240,6 @@
 	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
 	[alert addButtonWithTitle:@"OK"];
 	[alert setMessageText:@"Lost Port"];
-	//	[alert setInformativeText:@""];
 	[alert setAlertStyle:NSWarningAlertStyle];
 	[alert runModal];
 }
