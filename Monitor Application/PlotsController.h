@@ -16,20 +16,21 @@
 	CPXYGraph															*currentPlot;
 	CPXYGraph															*voltagePlot;
 	CPXYGraph															*energyPlot;
-	NSArray																*currentPlotData;
-	NSArray																*voltagePlotData;
-	NSArray																*energyPlotData;	
+	NSMutableArray												*currentPlotData;
+	NSMutableArray												*voltagePlotData;
+	NSMutableArray												*energyPlotData;	
 	NSMutableArray												*currentRawData;
 	NSMutableArray												*voltageRawData;
 	NSMutableArray												*energyRawData;
 	CPScatterPlot													*currentDataSourceLinePlot;
+	CPScatterPlot													*voltageDataSourceLinePlot;	
+	CPScatterPlot													*energyDataSourceLinePlot;
 	CPXYPlotSpace													*currentPlotSpace;
 	CPXYPlotSpace													*voltagePlotSpace;
 	CPXYPlotSpace													*energyPlotSpace;
-	int																	  packets;
 }
 
 - (void)addNewData:(NSData *)data;
-- (void)reloadData;
+- (void)addNewEnergyPlotPoint:(float)value;
 
 @end
