@@ -2039,6 +2039,26 @@
 							<reference key="NSSuperview" ref="439893737"/>
 							<string key="NSClassName">CPLayerHostingView</string>
 						</object>
+						<object class="NSButton" id="857897534">
+							<reference key="NSNextResponder" ref="439893737"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{1148, 10}, {96, 32}}</string>
+							<reference key="NSSuperview" ref="439893737"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="58957203">
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents">Button</string>
+								<reference key="NSSupport" ref="873664797"/>
+								<reference key="NSControlView" ref="857897534"/>
+								<int key="NSButtonFlags">-2038284033</int>
+								<int key="NSButtonFlags2">129</int>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">200</int>
+								<int key="NSPeriodicInterval">25</int>
+							</object>
+						</object>
 					</object>
 					<string key="NSFrameSize">{1366, 720}</string>
 					<reference key="NSSuperview"/>
@@ -2056,15 +2076,30 @@
 			<object class="NSUserDefaultsController" id="199747718">
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
-			<object class="NSCollectionViewItem" id="493629447"/>
 			<object class="NSCustomObject" id="993574069">
 				<string key="NSClassName">PlotsController</string>
 			</object>
-			<object class="NSCollectionViewItem" id="382238428"/>
 			<object class="NSView" id="515235433">
 				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<string key="NSFrameSize">{100, 100}</string>
+			</object>
+			<object class="NSWindowTemplate" id="217810788">
+				<int key="NSWindowStyleMask">8223</int>
+				<int key="NSWindowBacking">2</int>
+				<string key="NSWindowRect">{{145, 148}, {480, 270}}</string>
+				<int key="NSWTFlags">-461897728</int>
+				<string key="NSWindowTitle">Nodes</string>
+				<string key="NSWindowClass">NSPanel</string>
+				<nil key="NSViewClass"/>
+				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
+				<object class="NSView" key="NSWindowView" id="899494723">
+					<nil key="NSNextResponder"/>
+					<int key="NSvFlags">256</int>
+					<string key="NSFrameSize">{480, 270}</string>
+				</object>
+				<string key="NSScreenRect">{{0, 0}, {1366, 746}}</string>
+				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -2848,14 +2883,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">view</string>
-						<reference key="source" ref="382238428"/>
-						<reference key="destination" ref="515235433"/>
-					</object>
-					<int key="connectionID">1940</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">currentHostView</string>
 						<reference key="source" ref="993574069"/>
 						<reference key="destination" ref="913174875"/>
@@ -2877,6 +2904,22 @@
 						<reference key="destination" ref="770077885"/>
 					</object>
 					<int key="connectionID">1950</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nodesPanel</string>
+						<reference key="source" ref="924290157"/>
+						<reference key="destination" ref="217810788"/>
+					</object>
+					<int key="connectionID">1956</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showNodesPanel:</string>
+						<reference key="source" ref="924290157"/>
+						<reference key="destination" ref="857897534"/>
+					</object>
+					<int key="connectionID">1959</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3472,6 +3515,7 @@
 							<reference ref="770077885"/>
 							<reference ref="913174875"/>
 							<reference ref="253986271"/>
+							<reference ref="857897534"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -3848,11 +3892,6 @@
 						<reference key="parent" ref="439893737"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">1780</int>
-						<reference key="object" ref="493629447"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">1830</int>
 						<reference key="object" ref="937827677"/>
 						<object class="NSMutableArray" key="children">
@@ -3871,11 +3910,6 @@
 						<reference key="object" ref="993574069"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Plots Controller</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1937</int>
-						<reference key="object" ref="382238428"/>
-						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1938</int>
@@ -4214,6 +4248,35 @@
 						<reference key="object" ref="913174875"/>
 						<reference key="parent" ref="439893737"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1952</int>
+						<reference key="object" ref="217810788"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="899494723"/>
+						</object>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Nodes Panel</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1953</int>
+						<reference key="object" ref="899494723"/>
+						<reference key="parent" ref="217810788"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1957</int>
+						<reference key="object" ref="857897534"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="58957203"/>
+						</object>
+						<reference key="parent" ref="439893737"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1958</int>
+						<reference key="object" ref="58957203"/>
+						<reference key="parent" ref="857897534"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -4340,6 +4403,13 @@
 					<string>1943.IBViewBoundsToFrameTransform</string>
 					<string>195.IBPluginDependency</string>
 					<string>195.ImportedFromIB2</string>
+					<string>1952.IBEditorWindowLastContentRect</string>
+					<string>1952.IBPluginDependency</string>
+					<string>1952.IBWindowTemplateEditedContentRect</string>
+					<string>1952.NSWindowTemplate.visibleAtLaunch</string>
+					<string>1953.IBPluginDependency</string>
+					<string>1957.IBPluginDependency</string>
+					<string>1958.IBPluginDependency</string>
 					<string>196.IBPluginDependency</string>
 					<string>196.ImportedFromIB2</string>
 					<string>197.IBPluginDependency</string>
@@ -4705,6 +4775,13 @@
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
+					<string>{{53, 395}, {480, 270}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{53, 395}, {480, 270}}</string>
+					<boolean value="NO"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4931,7 +5008,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1951</int>
+			<int key="maxID">1959</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4945,8 +5022,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>connectDisconnect:</string>
 							<string>showConsoleWindow:</string>
+							<string>showNodesPanel:</string>
 							<string>showPreferencePanel:</string>
-							<string>showWaveformWIndow:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4962,8 +5039,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>connectDisconnect:</string>
 							<string>showConsoleWindow:</string>
+							<string>showNodesPanel:</string>
 							<string>showPreferencePanel:</string>
-							<string>showWaveformWIndow:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4976,11 +5053,11 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">showPreferencePanel:</string>
+								<string key="name">showNodesPanel:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">showWaveformWIndow:</string>
+								<string key="name">showPreferencePanel:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>
@@ -4994,6 +5071,7 @@
 							<string>consoleWindowShowButton</string>
 							<string>deviceComboBox</string>
 							<string>mainWindow</string>
+							<string>nodesPanel</string>
 							<string>outputTextView</string>
 							<string>plotsController</string>
 							<string>speedComboBox</string>
@@ -5005,6 +5083,7 @@
 							<string>NSButton</string>
 							<string>NSComboBox</string>
 							<string>NSWindow</string>
+							<string>NSPanel</string>
 							<string>NSTextView</string>
 							<string>PlotsController</string>
 							<string>NSComboBox</string>
@@ -5019,6 +5098,7 @@
 							<string>consoleWindowShowButton</string>
 							<string>deviceComboBox</string>
 							<string>mainWindow</string>
+							<string>nodesPanel</string>
 							<string>outputTextView</string>
 							<string>plotsController</string>
 							<string>speedComboBox</string>
@@ -5044,6 +5124,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">mainWindow</string>
 								<string key="candidateClassName">NSWindow</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">nodesPanel</string>
+								<string key="candidateClassName">NSPanel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">outputTextView</string>
@@ -5217,14 +5301,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSCell.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSCollectionViewItem</string>
-					<string key="superclassName">NSViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">AppKit.framework/Headers/NSCollectionView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -5786,6 +5862,14 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">NSPanel</string>
+					<string key="superclassName">NSWindow</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">NSProgressIndicator</string>
 					<string key="superclassName">NSView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -5875,25 +5959,6 @@
 					<string key="className">NSView</string>
 					<string key="superclassName">NSResponder</string>
 					<reference key="sourceIdentifier" ref="137794306"/>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSViewController</string>
-					<string key="superclassName">NSResponder</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">view</string>
-						<string key="NS.object.0">NSView</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">view</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">view</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBFrameworkSource</string>
-						<string key="minorKey">AppKit.framework/Headers/NSViewController.h</string>
-					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSWindow</string>
@@ -6067,7 +6132,7 @@
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
-			<integer value="1060" key="NS.object.0"/>
+			<integer value="1050" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
