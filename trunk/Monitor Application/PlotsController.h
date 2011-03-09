@@ -19,9 +19,6 @@
 	NSMutableArray												*currentPlotData;
 	NSMutableArray												*voltagePlotData;
 	NSMutableArray												*energyPlotData;	
-	NSMutableArray												*currentRawData;
-	NSMutableArray												*voltageRawData;
-	NSMutableArray												*energyRawData;
 	CPScatterPlot													*currentDataSourceLinePlot;
 	CPScatterPlot													*voltageDataSourceLinePlot;	
 	CPScatterPlot													*energyDataSourceLinePlot;

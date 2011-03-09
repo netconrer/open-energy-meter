@@ -19,7 +19,7 @@
 -(id)init
 {
 	speedArray = [[NSArray arrayWithObjects:@"600", @"1200", @"2400", @"4800", @"9600", @"19200", @"28800", @"38400", @"57600", @"115200", @"230400", nil] retain]; // this also needs to be moved to some user specifiable list of prefered data rates
-	xbeeParser = [[XBeeAPIParser alloc] init];
+	xbeeParser = [[[XBeeAPIParser alloc] init] autorelease];
 	[xbeeParser setDelegate:self];
 	return self;
 }
@@ -123,7 +123,7 @@
 {
 	AMSerialPort *sendPort = [dataDictionary objectForKey:@"serialPort"]; // we need this so we can tell the port to continue listening for incoming data after we're done processing data that
 	NSData *data = [dataDictionary objectForKey:@"data"];
-	int dataLength = [data length];
+	NSInteger dataLength = [data length];
 	if (dataLength > 0) // at a minimum all data received is inputted into the outputTextView
 	{
 		[xbeeParser addData:data];
@@ -283,7 +283,7 @@
 - (IBAction)showConsoleWindow:(id)sender 
 {
 	if (!consoleController) {
-		consoleController = [[ConsoleController alloc] init];		
+		consoleController = [[[ConsoleController alloc] init] autorelease];		
 	}	 else if (consoleController && [consoleController consoleWindowIsVisable]) {
 		[consoleController hideConsoleWindow];
 		return;
@@ -294,16 +294,9 @@
 - (IBAction)showPreferencePanel:(id)sender
 {
 	if (!preferenceController) {
-		preferenceController = [[PreferenceController alloc] init];
+		preferenceController = [[[PreferenceController alloc] init] autorelease];
 	}
 	[preferenceController showWindow:self];
 }
 
-- (IBAction)showWaveformWIndow:(id)sender
-{
-	if (!waveformWindowController) {
-		waveformWindowController = [[WaveformWindowController alloc] init];
-	}
-	[waveformWindowController showWindow:self];
-}
 @end
