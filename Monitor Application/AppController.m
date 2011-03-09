@@ -299,4 +299,8 @@
 	[preferenceController showWindow:self];
 }
 
+- (IBAction)showNodesPanel:(id)sender
+{
+	[nodesPanel orderFront:self];
+}
 @end
