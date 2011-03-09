@@ -18,6 +18,7 @@
 	IBOutlet NSProgressIndicator      *connectionIndicator;
   IBOutlet NSButton                 *consoleWindowShowButton;
   IBOutlet PlotsController          *plotsController;
+  IBOutlet NSPanel                  *nodesPanel;
 
 	AMSerialPort                      *port;
 	NSArray                           *speedArray;
@@ -26,29 +27,30 @@
   PreferenceController              *preferenceController;
   
 	bool                              serialPortConnected;
-	NSInteger                              loopbacksSent;
-	NSInteger                              loopbacksReceived;
- float                            channel0RMS;
- float                            channel1RMS;
-  NSInteger                              channel0ADC;  
-  NSInteger                              channel1ADC;
- float                            kilowattHours;
- float                            voltAmps;
+	NSInteger                         loopbacksSent;
+	NSInteger                         loopbacksReceived;
+  float                             channel0RMS;
+  float                             channel1RMS;
+  NSInteger                         channel0ADC;  
+  NSInteger                         channel1ADC;
+  float                             kilowattHours;
+  float                             voltAmps;
 }
 
 - (void)closePort;
 - (IBAction)connectDisconnect:(id)sender;
 - (IBAction)showConsoleWindow:(id)sender;
 - (IBAction)showPreferencePanel:(id)sender;
+- (IBAction)showNodesPanel:(id)sender;
 - (void)explodeValuesPacket:(NSData *)packet;
 
-@property           bool            serialPortConnected;
-@property          float          channel0RMS;
-@property          float          channel1RMS;
-@property           NSInteger            channel0ADC;
-@property           NSInteger            channel1ADC;
-@property          float          kilowattHours;
-@property          float          voltAmps;
+@property          bool            serialPortConnected;
+@property          float           channel0RMS;
+@property          float           channel1RMS;
+@property          NSInteger       channel0ADC;
+@property          NSInteger       channel1ADC;
+@property          float           kilowattHours;
+@property          float           voltAmps;
 
 @property (retain)  AMSerialPort    *port;
 
