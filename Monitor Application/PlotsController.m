@@ -19,7 +19,11 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 -(void)dealloc 
 {
 	[currentPlotData release];
+	[voltagePlotData release];
+	[energyPlotData release];
 	[currentPlot release];
+	[voltagePlot release];
+	[energyPlot release];
 	[super dealloc];
 }
 
@@ -38,9 +42,17 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	energyPlot = [(CPXYGraph *)[CPXYGraph alloc]  initWithFrame:CGRectZero];
 	
 	CPTheme *theme = [CPTheme themeNamed:kCPSlateTheme];
-	[currentPlot applyTheme:theme];
-	[voltagePlot applyTheme:theme];
+	[currentPlot applyTheme:theme];	
+	[currentPlot setTitle: @"Current Waveform"];
+	[currentPlot setTitleDisplacement: CGPointMake(0, -10)];
+	
+	[voltagePlot applyTheme: theme];
+	voltagePlot.title = @"Voltage Waveform";
+	voltagePlot.titleDisplacement = CGPointMake(0, -10);
+	
 	[energyPlot  applyTheme:theme];
+	energyPlot.title = @"Power";
+	energyPlot.titleDisplacement = CGPointMake(0, -10);
 	
 	
 	currentHostView.hostedLayer = currentPlot;
@@ -51,6 +63,8 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	currentPlotSpace = (CPXYPlotSpace *)currentPlot.defaultPlotSpace;
 	currentPlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(0) length:CPDecimalFromInt(99)];
 	currentPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(-2048) length:CPDecimalFromFloat(4096)];
+
+	
 	
 	// Setup scatter plot space
 	voltagePlotSpace = (CPXYPlotSpace *)voltagePlot.defaultPlotSpace;
@@ -67,21 +81,26 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	// Axes
 	CPXYAxisSet *axisSet = (CPXYAxisSet *)currentPlot.axisSet;
 	CPXYAxis *x = axisSet.xAxis;
+	x.majorTickLineStyle = nil;
 	x.majorIntervalLength = CPDecimalFromString(@"25");
-	x.orthogonalCoordinateDecimal = CPDecimalFromInt(-6000);
+	x.orthogonalCoordinateDecimal = CPDecimalFromInt(0);
 	x.minorTicksPerInterval = 0;
-	
+	x.labelFormatter = nil;
+															 
 	CPXYAxis *y = axisSet.yAxis;
-	y.majorIntervalLength = CPDecimalFromString(@"1000");
+	y.majorIntervalLength = CPDecimalFromInt(1);
 	y.minorTicksPerInterval = 5;
 	y.orthogonalCoordinateDecimal = CPDecimalFromFloat(-100);
+	
 	
 	// Axes
 	axisSet = (CPXYAxisSet *)voltagePlot.axisSet;
 	x = axisSet.xAxis;
+	x.majorTickLineStyle = nil;
 	x.majorIntervalLength = CPDecimalFromString(@"25");
-	x.orthogonalCoordinateDecimal = CPDecimalFromInt(-6000);
+	x.orthogonalCoordinateDecimal = CPDecimalFromInt(0);
 	x.minorTicksPerInterval = 0;
+	x.labelFormatter = nil;
 	
 	y = axisSet.yAxis;
 	y.majorIntervalLength = CPDecimalFromString(@"1");
@@ -98,8 +117,7 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	y = axisSet.yAxis;
 	y.majorIntervalLength = CPDecimalFromString(@"1000");
 	y.minorTicksPerInterval = 5;
-	y.orthogonalCoordinateDecimal = CPDecimalFromFloat(90);
-	
+	y.orthogonalCoordinateDecimal = CPDecimalFromFloat(0);	
 	
 	
 	
@@ -199,7 +217,7 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 - (void)addNewData:(NSData *)data
 {
 	short			 tempShort;
-	int				 i;
+	NSInteger	 i;
 	char			 packetType;
 	char			 reloadFlag;
 	NSNumber	 *num = nil;
