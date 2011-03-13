@@ -249,7 +249,6 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	i = [plotDataToUpdate count];
 	if (i > 100) {
 		[plotDataToUpdate removeObjectsInRange: NSMakeRange(0, i-100)];
-		NSLog(@"%@", plotDataToUpdate);
 	}
 	
 	if (reloadFlag == 1) {
