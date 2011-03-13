@@ -19,7 +19,7 @@
 -(id)init
 {
 	speedArray = [[NSArray arrayWithObjects:@"600", @"1200", @"2400", @"4800", @"9600", @"19200", @"28800", @"38400", @"57600", @"115200", @"230400", nil] retain]; // this also needs to be moved to some user specifiable list of prefered data rates
-	xbeeParser = [[[XBeeAPIParser alloc] init] autorelease];
+	xbeeParser = [[XBeeAPIParser alloc] init];
 	[xbeeParser setDelegate:self];
 	return self;
 }
@@ -283,10 +283,7 @@
 - (IBAction)showConsoleWindow:(id)sender 
 {
 	if (!consoleController) {
-		consoleController = [[[ConsoleController alloc] init] autorelease];		
-	}	 else if (consoleController && [consoleController consoleWindowIsVisable]) {
-		[consoleController hideConsoleWindow];
-		return;
+		consoleController = [[ConsoleController alloc] init];		
 	}
 	[consoleController showWindow:self];
 }
@@ -303,4 +300,31 @@
 {
 	[nodesPanel orderFront:self];
 }
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////                    //////////////////////////////
+//////////////////////////////     IBActions      //////////////////////////////
+//////////////////////////////                    //////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+
+#pragma mark -
+#pragma mark Dealloc
+
+-(void)dealloc
+{
+	if (consoleController) {
+		[consoleController release];		
+	}
+	[xbeeParser release];
+	[super dealloc];
+}
+
+
+
+
 @end

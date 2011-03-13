@@ -15,8 +15,6 @@
 		C01B9415131EB7D8002FA7E9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01B9414131EB7D8002FA7E9 /* QuartzCore.framework */; };
 		C01B94C2131EBF79002FA7E9 /* CorePlot.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C01B934E131EAEEF002FA7E9 /* CorePlot.framework */; };
 		C01B94C6131EC005002FA7E9 /* CorePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C01B934E131EAEEF002FA7E9 /* CorePlot.framework */; };
-		C01B94DB131EC127002FA7E9 /* WaveformController.m in Sources */ = {isa = PBXBuildFile; fileRef = C01B94DA131EC127002FA7E9 /* WaveformController.m */; };
-		C01B94FC131EC25A002FA7E9 /* WaveformWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C01B94FB131EC25A002FA7E9 /* WaveformWindowController.m */; };
 		C01E82FD13200E6200DD6824 /* PlotsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C01E82FC13200E6200DD6824 /* PlotsController.m */; };
 		C0636D9A131C92FB001C3C6F /* Meter.icns in Resources */ = {isa = PBXBuildFile; fileRef = C0636D99131C92FB001C3C6F /* Meter.icns */; };
 		C082F886131C533E004F2B9C /* Console.xib in Resources */ = {isa = PBXBuildFile; fileRef = C082F885131C533E004F2B9C /* Console.xib */; };
@@ -87,10 +85,6 @@
 		C00177EC131EF77400A66176 /* Waveform.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Waveform.xib; sourceTree = "<group>"; };
 		C01B9344131EAEEF002FA7E9 /* CorePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlot.xcodeproj; path = "../../CorePlot 0.2.2/Source/framework/CorePlot.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		C01B9414131EB7D8002FA7E9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		C01B94D9131EC127002FA7E9 /* WaveformController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveformController.h; sourceTree = "<group>"; };
-		C01B94DA131EC127002FA7E9 /* WaveformController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveformController.m; sourceTree = "<group>"; };
-		C01B94FA131EC25A002FA7E9 /* WaveformWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveformWindowController.h; sourceTree = "<group>"; };
-		C01B94FB131EC25A002FA7E9 /* WaveformWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveformWindowController.m; sourceTree = "<group>"; };
 		C01E82FB13200E6200DD6824 /* PlotsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlotsController.h; sourceTree = "<group>"; };
 		C01E82FC13200E6200DD6824 /* PlotsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotsController.m; sourceTree = "<group>"; };
 		C0636D99131C92FB001C3C6F /* Meter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Meter.icns; sourceTree = "<group>"; };
@@ -145,18 +139,14 @@
 			children = (
 				D30D84730EFBD353005D3110 /* AppController.h */,
 				D30D84720EFBD353005D3110 /* AppController.m */,
-				C01B94D9131EC127002FA7E9 /* WaveformController.h */,
 				C01E82FB13200E6200DD6824 /* PlotsController.h */,
 				C01E82FC13200E6200DD6824 /* PlotsController.m */,
-				C01B94DA131EC127002FA7E9 /* WaveformController.m */,
 				D33E0FAE0F5CD3B300BE3EC1 /* XBeeAPIParser.h */,
 				D33E0FAF0F5CD3B300BE3EC1 /* XBeeAPIParser.m */,
 				C086F16C131846340046BD34 /* ConsoleController.h */,
 				C086F16D131846340046BD34 /* ConsoleController.m */,
 				C0DFB2F4131C82480086EC36 /* PreferenceController.h */,
 				C0DFB2F5131C82480086EC36 /* PreferenceController.m */,
-				C01B94FA131EC25A002FA7E9 /* WaveformWindowController.h */,
-				C01B94FB131EC25A002FA7E9 /* WaveformWindowController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -372,8 +362,6 @@
 				D33E0FB00F5CD3B300BE3EC1 /* XBeeAPIParser.m in Sources */,
 				C086F16E131846340046BD34 /* ConsoleController.m in Sources */,
 				C0DFB2F6131C82480086EC36 /* PreferenceController.m in Sources */,
-				C01B94DB131EC127002FA7E9 /* WaveformController.m in Sources */,
-				C01B94FC131EC25A002FA7E9 /* WaveformWindowController.m in Sources */,
 				C01E82FD13200E6200DD6824 /* PlotsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
