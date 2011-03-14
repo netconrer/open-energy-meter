@@ -18,13 +18,16 @@
 	CPXYGraph															*energyPlot;
 	NSMutableArray												*currentPlotData;
 	NSMutableArray												*voltagePlotData;
-	NSMutableArray												*energyPlotData;	
+	NSMutableArray												*energyPlotData;
+	NSMutableArray												*energyPlotDates;
 	CPScatterPlot													*currentDataSourceLinePlot;
 	CPScatterPlot													*voltageDataSourceLinePlot;	
 	CPScatterPlot													*energyDataSourceLinePlot;
 	CPXYPlotSpace													*currentPlotSpace;
 	CPXYPlotSpace													*voltagePlotSpace;
 	CPXYPlotSpace													*energyPlotSpace;
+	
+	NSDate																*today;
 }
 
 - (void)addNewData:(NSData *)data;
