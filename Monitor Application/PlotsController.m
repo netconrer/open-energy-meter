@@ -24,16 +24,21 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	[currentPlot release];
 	[voltagePlot release];
 	[energyPlot release];
+	[energyPlotDates release];
+	[today release];
 	[super dealloc];
 }
 
 -(void)awakeFromNib
 {
 	[super awakeFromNib];
+	today = [[NSDate alloc] initWithTimeIntervalSinceNow:0.0];
+	NSLog(@"%@", today);
 	
 	currentPlotData = [[NSMutableArray alloc] init];
 	voltagePlotData = [[NSMutableArray alloc] init];
 	energyPlotData = [[NSMutableArray alloc] init];
+	energyPlotDates = [[NSMutableArray alloc] init];
 	
 
 	// Create graph from theme
@@ -53,6 +58,11 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	[energyPlot  applyTheme:theme];
 	energyPlot.title = @"Power";
 	energyPlot.titleDisplacement = CGPointMake(0, -10);
+	energyPlot.plotAreaFrame.paddingTop = 10.0;
+	energyPlot.plotAreaFrame.paddingBottom = 10.0;
+	energyPlot.plotAreaFrame.paddingLeft = 10.0;
+	energyPlot.plotAreaFrame.paddingRight = 10.0;
+	energyPlot.plotAreaFrame.cornerRadius = 10.0;
 	
 	
 	currentHostView.hostedLayer = currentPlot;
@@ -74,8 +84,8 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	// Setup scatter plot space
 	energyPlotSpace = (CPXYPlotSpace *)energyPlot.defaultPlotSpace;
 	energyPlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0) length:CPDecimalFromInt(99)];
-	energyPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-0.1) length:CPDecimalFromFloat(2.2)];
-	energyPlotSpace.allowsUserInteraction = YES;
+	energyPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-50) length:CPDecimalFromFloat(1000)];
+	//energyPlotSpace.allowsUserInteraction = YES;
 	energyPlotSpace.delegate = self;
 	
 	// Axes
@@ -110,14 +120,34 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	// Axes
 	axisSet = (CPXYAxisSet *)energyPlot.axisSet;
 	x = axisSet.xAxis;
-	x.majorIntervalLength = CPDecimalFromString(@"25");
-	x.orthogonalCoordinateDecimal = CPDecimalFromInt(0);
-	x.minorTicksPerInterval = 0;
 	
-	y = axisSet.yAxis;
-	y.majorIntervalLength = CPDecimalFromString(@"1000");
-	y.minorTicksPerInterval = 5;
-	y.orthogonalCoordinateDecimal = CPDecimalFromFloat(0);	
+	NSInteger oneXUnit = 60;
+	x.majorIntervalLength    =  CPDecimalFromInt(oneXUnit);
+	NSDateFormatter *dateFormatter   =   [[[NSDateFormatter alloc] init]autorelease];
+	[dateFormatter setDateStyle:kCFDateFormatterShortStyle];
+	[dateFormatter setDateFormat:@"M/d/yy HHmm"];
+	CPTimeFormatter *timeFormatter  =   [[CPTimeFormatter alloc] initWithDateFormatter:dateFormatter];
+	timeFormatter.referenceDate =   today;
+	x.labelFormatter    =   timeFormatter;
+	
+	
+	//x.majorIntervalLength = CPDecimalFromString(@"25");
+	//x.orthogonalCoordinateDecimal = CPDecimalFromInt(0);
+	//x.minorTicksPerInterval = 0;
+	CPLineStyle *majorGridLineStyle = [CPLineStyle lineStyle];
+	majorGridLineStyle.lineWidth = 0.75;
+	majorGridLineStyle.lineColor = [CPColor blueColor];
+	
+	y = axisSet.yAxis;	
+	y.majorIntervalLength = CPDecimalFromFloat(100.0F);
+	y.majorGridLineStyle = majorGridLineStyle;
+	y.minorTicksPerInterval = 10;
+	y.orthogonalCoordinateDecimal = CPDecimalFromFloat(8);
+	y.labelAlignment = CPAlignmentBottom;
+	y.visibleRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(0) length:CPDecimalFromInt(4000)];
+	y.title = @"Watts";
+	y.titleOffset = 50.0;
+	y.labelingPolicy = CPAxisLabelingPolicyAutomatic;
 	
 	
 	
@@ -140,11 +170,14 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	
 	
 	// Create a plot that uses the data source method
+	CPColor *energyPlotLineColor = [[CPColor blueColor] colorWithAlphaComponent:0.5];
 	energyDataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
 	energyDataSourceLinePlot.identifier = ENERGY_PLOT;
 	energyDataSourceLinePlot.dataLineStyle.lineWidth = 2.f;
-	energyDataSourceLinePlot.dataLineStyle.lineColor = [CPColor blueColor];
+	energyDataSourceLinePlot.dataLineStyle.lineColor = energyPlotLineColor;
 	energyDataSourceLinePlot.dataSource = self;
+	energyDataSourceLinePlot.areaFill = [CPFill fillWithColor:energyPlotLineColor];	
+	energyDataSourceLinePlot.areaBaseValue = CPDecimalFromInt(0);
 	[energyPlot addPlot:energyDataSourceLinePlot];
 }
 
@@ -197,7 +230,8 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	} else if ([(NSString *)plot.identifier isEqualToString:ENERGY_PLOT]) {
 			switch (fieldEnum) {
 				case CPScatterPlotFieldX:
-					num = [NSNumber numberWithUnsignedInt:index];
+					num = [energyPlotDates objectAtIndex:index];
+					//NSLog(@"%@", num);
 					break;
 				case CPScatterPlotFieldY:
 					num = [energyPlotData objectAtIndex:index];
@@ -258,10 +292,33 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 
 - (void)addNewEnergyPlotPoint:(float)value
 {
-	NSNumber *num = [NSNumber numberWithFloat: value/1000];
-	[energyPlotData addObject: num];
+	NSNumber *num = [NSNumber numberWithFloat: value];
+	[energyPlotData addObject:num];
+	num = [NSNumber numberWithDouble: [[NSDate date] timeIntervalSinceDate: today]];
+	[energyPlotDates addObject: num];
+	
+	CPXYAxisSet *axisSet = (CPXYAxisSet *)energyPlot.axisSet;
+	CPPlotRange *newRange = [CPPlotRange plotRangeWithLocation: CPDecimalFromFloat([[energyPlotDates lastObject] floatValue] - 100.00) length:CPDecimalFromFloat(100.0)];	
+	energyPlotSpace.xRange = newRange;
+	axisSet.yAxis.orthogonalCoordinateDecimal = CPDecimalFromFloat(newRange.locationDouble+8.0F);
 	[energyDataSourceLinePlot reloadData];
+
 }
+
+//- (CPPlotRange *)plotSpace:(CPPlotSpace *)space
+//		 willChangePlotRangeTo:(CPPlotRange *)newRange
+//						 forCoordinate:(CPCoordinate)coordinate
+//{
+//	CPXYAxisSet *axisSet = (CPXYAxisSet *)energyPlot.axisSet;
+//	if (coordinate == CPCoordinateX) {
+//		axisSet.yAxis.orthogonalCoordinateDecimal = CPDecimalFromFloat(newRange.locationDouble+8.0F);
+//	} else {
+//		newRange.location = CPDecimalFromFloat(-50.0F);
+//		axisSet.xAxis.orthogonalCoordinateDecimal = CPDecimalFromFloat(0.0F);
+//	}
+//	
+//	return newRange;
+//}
 
 
 
