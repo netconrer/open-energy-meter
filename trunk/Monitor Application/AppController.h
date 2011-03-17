@@ -35,6 +35,8 @@
   NSInteger                         channel1ADC;
   float                             kilowattHours;
   float                             voltAmps;
+  float                             powerFactor;
+  float                             watts;
 }
 
 - (void)closePort;
@@ -51,6 +53,8 @@
 @property          NSInteger       channel1ADC;
 @property          float           kilowattHours;
 @property          float           voltAmps;
+@property          float           powerFactor;
+@property          float           watts;
 
 @property (retain)  AMSerialPort    *port;
 

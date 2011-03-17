@@ -12,7 +12,8 @@
 @synthesize channel1ADC;
 @synthesize kilowattHours;
 @synthesize	voltAmps;
-
+@synthesize powerFactor;
+@synthesize watts;
 
 
 
@@ -211,9 +212,13 @@
 	[packet getBytes:&tempFloat range: NSMakeRange(17,4)];
 	[self setKilowattHours:joulesToKWHours(tempFloat)];
 	[packet getBytes:&tempFloat range: NSMakeRange(21,4)];
-	[self setVoltAmps:tempFloat];
-	
+	[self setVoltAmps:tempFloat];	
+	[packet getBytes:&tempFloat range: NSMakeRange(25,4)];
+	[self setPowerFactor:tempFloat];
+	[packet getBytes:&tempFloat range: NSMakeRange(29,4)];
+	[self setWatts:tempFloat];
 	[plotsController addNewEnergyPlotPoint: tempFloat];
+	
 }
 
 
