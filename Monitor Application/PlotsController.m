@@ -50,10 +50,14 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	[currentPlot applyTheme:theme];	
 	[currentPlot setTitle: @"Current Waveform"];
 	[currentPlot setTitleDisplacement: CGPointMake(0, -10)];
+	currentPlot.plotAreaFrame.paddingTop = 10.0;
+	currentPlot.plotAreaFrame.paddingBottom = 10.0;
 	
 	[voltagePlot applyTheme: theme];
 	voltagePlot.title = @"Voltage Waveform";
 	voltagePlot.titleDisplacement = CGPointMake(0, -10);
+	voltagePlot.plotAreaFrame.paddingTop = 10.0;
+	voltagePlot.plotAreaFrame.paddingBottom = 10.0;
 	
 	[energyPlot  applyTheme:theme];
 	energyPlot.title = @"Power";
@@ -72,19 +76,19 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	// Setup scatter plot space
 	currentPlotSpace = (CPXYPlotSpace *)currentPlot.defaultPlotSpace;
 	currentPlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(0) length:CPDecimalFromInt(99)];
-	currentPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(-2048) length:CPDecimalFromFloat(4096)];
+	currentPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(-2050) length:CPDecimalFromFloat(4100)];
 
 	
 	
 	// Setup scatter plot space
 	voltagePlotSpace = (CPXYPlotSpace *)voltagePlot.defaultPlotSpace;
 	voltagePlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(0) length:CPDecimalFromInt(99)];
-	voltagePlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(-2048) length:CPDecimalFromFloat(4096)];
+	voltagePlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(-2050) length:CPDecimalFromFloat(4100)];
 	
 	// Setup scatter plot space
 	energyPlotSpace = (CPXYPlotSpace *)energyPlot.defaultPlotSpace;
 	energyPlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0) length:CPDecimalFromInt(99)];
-	energyPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-50) length:CPDecimalFromFloat(1000)];
+	energyPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-100) length:CPDecimalFromFloat(2000)];
 	//energyPlotSpace.allowsUserInteraction = YES;
 	energyPlotSpace.delegate = self;
 	
@@ -154,7 +158,7 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	// Create a plot that uses the data source method
 	voltageDataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
 	voltageDataSourceLinePlot.identifier = VOLTAGE_PLOT;
-	voltageDataSourceLinePlot.dataLineStyle.lineWidth = 2.f;
+	voltageDataSourceLinePlot.dataLineStyle.lineWidth = 1.5f;
 	voltageDataSourceLinePlot.dataLineStyle.lineColor = [CPColor blueColor];
 	voltageDataSourceLinePlot.dataSource = self;
 	[voltagePlot addPlot:voltageDataSourceLinePlot];
@@ -162,7 +166,7 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	// Create a plot that uses the data source method
 	currentDataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
 	currentDataSourceLinePlot.identifier = CURRENT_PLOT;
-	currentDataSourceLinePlot.dataLineStyle.lineWidth = 2.f;
+	currentDataSourceLinePlot.dataLineStyle.lineWidth = 1.5f;
 	currentDataSourceLinePlot.dataLineStyle.lineColor = [CPColor blueColor];
 	currentDataSourceLinePlot.dataSource = self;
 	[currentPlot addPlot:currentDataSourceLinePlot];
@@ -313,14 +317,12 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 //	if (coordinate == CPCoordinateX) {
 //		axisSet.yAxis.orthogonalCoordinateDecimal = CPDecimalFromFloat(newRange.locationDouble+8.0F);
 //	} else {
-//		newRange.location = CPDecimalFromFloat(-50.0F);
-//		axisSet.xAxis.orthogonalCoordinateDecimal = CPDecimalFromFloat(0.0F);
+//		//newRange.location = CPDecimalFromFloat(-50.0F);
+//		//axisSet.xAxis.orthogonalCoordinateDecimal = CPDecimalFromFloat(0.0F);
 //	}
 //	
 //	return newRange;
 //}
-
-
 
 
 @end

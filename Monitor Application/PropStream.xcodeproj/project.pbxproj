@@ -81,7 +81,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* PropStream_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropStream_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Open Power Meter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open Power Meter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Open Energy Monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open Energy Monitor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00177EC131EF77400A66176 /* Waveform.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Waveform.xib; sourceTree = "<group>"; };
 		C01B9344131EAEEF002FA7E9 /* CorePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CorePlot.xcodeproj; path = "../../CorePlot 0.2.2/Source/framework/CorePlot.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		C01B9414131EB7D8002FA7E9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -176,7 +176,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* Open Power Meter.app */,
+				8D1107320486CEB800E47090 /* Open Energy Monitor.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -277,7 +277,7 @@
 			name = "Open Power Monitor";
 			productInstallPath = "$(HOME)/Applications";
 			productName = PropStream;
-			productReference = 8D1107320486CEB800E47090 /* Open Power Meter.app */;
+			productReference = 8D1107320486CEB800E47090 /* Open Energy Monitor.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
