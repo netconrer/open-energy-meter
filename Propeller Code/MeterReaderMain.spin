@@ -10,11 +10,11 @@ CON
   ADC_DO_PIN                          = 6               'SPI Prop -> ADC data pin
   ADC_DS_PIN                          = 7               'SPI Prop -> ADC chip select pin
 
-  DEBUG_PORT                          = 1               'Arbitray 1-4 port numbe for debug serial line
+  DEBUG_PORT                          = 1               'Arbitray 0-3 port numbe for debug serial line
   DEBUG_TX_PIN                        = 30              'Prop->Computer data pin
   DEBUG_BAUD                          = 9600
 
-  XBEE_PORT                           = 2               'Arbitray 1-4 port numbe for XBee serial line
+  XBEE_PORT                           = 0               'Arbitray 1-4 port numbe for XBee serial line
   XBEE_TX_PIN                         = 27
   XBEE_RX_PIN                         = 26
   XBEE_BAUD                           = 57600
@@ -40,10 +40,6 @@ VAR
   long  channelMax[8]
   long  channelMin[8]
 
-  word  currentBuffer[BUFFER_LENGTH]
-  word  tempCurrentBuffer[BUFFER_LENGTH]
-  word  voltageBuffer[BUFFER_LENGTH]
-
   long  RMS[8]
 
   long  telemetryTransmitStack[50]
@@ -54,6 +50,11 @@ VAR
   long  watts
   long  powerFactor
   long  frequency
+
+  word  currentBuffer[BUFFER_LENGTH]
+  word  tempCurrentBuffer[BUFFER_LENGTH]
+  word  voltageBuffer[BUFFER_LENGTH]
+
   byte  telemetryBuffer[100]
 
 
@@ -69,7 +70,34 @@ OBJ
 
 
 
-PUB main
+PUB initialize
+  initializePointers
+  initializeObjects
+  initializeCogsFromThisFile
+
+
+
+
+pub initializeCogsFromThisFile
+  cognew(@meter_engine, @channelValue)
+  cognew(telemetryLoop, @telemetryTransmitStack)
+
+
+
+
+pub initializeObjects
+  uarts.init
+  uarts.addPort(DEBUG_PORT, UARTS#PINNOTUSED, DEBUG_TX_PIN, UARTS#PINNOTUSED, UARTS#PINNOTUSED, UARTS#DEFAULTTHRESHOLD, UARTS#NOMODE, DEBUG_BAUD)
+  uarts.addPort(XBEE_PORT, XBEE_RX_PIN, XBEE_TX_PIN, UARTS#PINNOTUSED, UARTS#PINNOTUSED, UARTS#DEFAULTTHRESHOLD, UARTS#NOMODE, XBEE_BAUD)
+  uarts.start
+  xbee.initialize(XBEE_PORT)
+  ADC.start_pointed(ADC_DO_PIN, ADC_DIN_PIN, ADC_CLK_PIN, ADC_DS_PIN, 4, 4, 12, 1, @channelState, @channelValue, @channelMax, @channelMin)
+  fpf.start(voltagePtr, currentPtr, powerFactorPtr, @frequency, voltageOffsetPtr, currentOffsetPtr)
+
+
+
+
+pub initializePointers
   voltageOffset := 2050
   currentOffset := 2066
   currentPtr    := @channelValue[3]
@@ -85,24 +113,6 @@ PUB main
   wattsPtr      := @watts
   voltageOffsetPtr := @voltageOffset
   currentOffsetPtr := @currentOffset
-
-  uarts.init
-  uarts.addPort(DEBUG_PORT, UARTS#PINNOTUSED, DEBUG_TX_PIN, UARTS#PINNOTUSED, UARTS#PINNOTUSED, UARTS#DEFAULTTHRESHOLD, UARTS#NOMODE, DEBUG_BAUD)
-  uarts.addPort(XBEE_PORT, XBEE_RX_PIN, XBEE_TX_PIN, UARTS#PINNOTUSED, UARTS#PINNOTUSED, UARTS#DEFAULTTHRESHOLD, UARTS#NOMODE, XBEE_BAUD)
-  uarts.start
-  xbee.initialize(XBEE_PORT)
-  ADC.start_pointed(ADC_DO_PIN, ADC_DIN_PIN, ADC_CLK_PIN, ADC_DS_PIN, 4, 4, 12, 1, @channelState, @channelValue, @channelMax, @channelMin)
-
-  fpf.start(voltagePtr, currentPtr, powerFactorPtr, @frequency, voltageOffsetPtr, currentOffsetPtr)
-
-
-  cognew(@meter_engine, @channelValue)
-  cognew(telemetryLoop, @telemetryTransmitStack)
-
-
-
-
-
 
 
 
@@ -161,15 +171,13 @@ PUB transmitWaveformPacket(pointer, type, theOffset) | i
 
 
 
-
-
-
-
-
 CON
   SignFlag      = $1                                    'Constats required for floating point routines
   ZeroFlag      = $2
   NaNFlag       = $8
+
+
+
 
 DAT
 '--------------------------------------------------------------------------------------------------
@@ -264,8 +272,8 @@ updateEnergy_ret
 
 fBufferLength long      float(BUFFER_LENGTH)
 currentMult   long      0.00847
-currentAdd    long      -0.0561
-voltageCor    long      0.09425
+currentAdd    long      -0.0554
+voltageCor    long      0.0947
 two           long      2.0
 sixZero       long      60.0
 
