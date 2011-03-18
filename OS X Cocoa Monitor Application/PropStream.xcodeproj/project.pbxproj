@@ -18,6 +18,8 @@
 		C01E82FD13200E6200DD6824 /* PlotsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C01E82FC13200E6200DD6824 /* PlotsController.m */; };
 		C0636D9A131C92FB001C3C6F /* Meter.icns in Resources */ = {isa = PBXBuildFile; fileRef = C0636D99131C92FB001C3C6F /* Meter.icns */; };
 		C082F886131C533E004F2B9C /* Console.xib in Resources */ = {isa = PBXBuildFile; fileRef = C082F885131C533E004F2B9C /* Console.xib */; };
+		C08507C9133393A000E824E6 /* Zoom In-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = C08507C7133393A000E824E6 /* Zoom In-32x32.png */; };
+		C08507CA133393A000E824E6 /* Zoom Out-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = C08507C8133393A000E824E6 /* Zoom Out-32x32.png */; };
 		C086F16E131846340046BD34 /* ConsoleController.m in Sources */ = {isa = PBXBuildFile; fileRef = C086F16D131846340046BD34 /* ConsoleController.m */; };
 		C0DFB2F6131C82480086EC36 /* PreferenceController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0DFB2F5131C82480086EC36 /* PreferenceController.m */; };
 		C0DFB2FA131C82A30086EC36 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0DFB2F9131C82A30086EC36 /* Preferences.xib */; };
@@ -79,7 +81,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* PropStream_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropStream_Prefix.pch; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* MegaJouleMonitor_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MegaJouleMonitor_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Open Energy Monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open Energy Monitor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00177EC131EF77400A66176 /* Waveform.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Waveform.xib; sourceTree = "<group>"; };
@@ -89,6 +91,8 @@
 		C01E82FC13200E6200DD6824 /* PlotsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlotsController.m; sourceTree = "<group>"; };
 		C0636D99131C92FB001C3C6F /* Meter.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Meter.icns; sourceTree = "<group>"; };
 		C082F885131C533E004F2B9C /* Console.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Console.xib; sourceTree = "<group>"; };
+		C08507C7133393A000E824E6 /* Zoom In-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Zoom In-32x32.png"; sourceTree = "<group>"; };
+		C08507C8133393A000E824E6 /* Zoom Out-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Zoom Out-32x32.png"; sourceTree = "<group>"; };
 		C086F16C131846340046BD34 /* ConsoleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleController.h; sourceTree = "<group>"; };
 		C086F16D131846340046BD34 /* ConsoleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleController.m; sourceTree = "<group>"; };
 		C0DFB2F4131C82480086EC36 /* PreferenceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceController.h; sourceTree = "<group>"; };
@@ -198,7 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				C0D116D912C0F69E005992B3 /* AMSerialPort */,
-				32CA4F630368D1EE00C91783 /* PropStream_Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* MegaJouleMonitor_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -207,6 +211,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C08507C7133393A000E824E6 /* Zoom In-32x32.png */,
+				C08507C8133393A000E824E6 /* Zoom Out-32x32.png */,
 				C0636D99131C92FB001C3C6F /* Meter.icns */,
 				C082F885131C533E004F2B9C /* Console.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -288,7 +294,7 @@
 			attributes = {
 				ORGANIZATIONNAME = "Chasing 'trons";
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PropStream" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MegaJouleMonitor" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -341,6 +347,8 @@
 				C0DFB2FA131C82A30086EC36 /* Preferences.xib in Resources */,
 				C0636D9A131C92FB001C3C6F /* Meter.icns in Resources */,
 				C00177ED131EF77400A66176 /* Waveform.xib in Resources */,
+				C08507C9133393A000E824E6 /* Zoom In-32x32.png in Resources */,
+				C08507CA133393A000E824E6 /* Zoom Out-32x32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +418,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PropStream_Prefix.pch;
+				GCC_PREFIX_HEADER = MegaJouleMonitor_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
@@ -431,7 +439,7 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PropStream_Prefix.pch;
+				GCC_PREFIX_HEADER = MegaJouleMonitor_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
@@ -483,7 +491,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "PropStream" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MegaJouleMonitor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
