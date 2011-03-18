@@ -44,6 +44,8 @@
 - (IBAction)showConsoleWindow:(id)sender;
 - (IBAction)showPreferencePanel:(id)sender;
 - (IBAction)showNodesPanel:(id)sender;
+
+
 - (void)explodeValuesPacket:(NSData *)packet;
 
 @property          bool            serialPortConnected;

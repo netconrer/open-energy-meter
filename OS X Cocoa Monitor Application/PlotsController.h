@@ -13,16 +13,16 @@
 	IBOutlet				CPLayerHostingView		*currentHostView;
 	IBOutlet				CPLayerHostingView		*voltageHostView;
 	IBOutlet				CPLayerHostingView		*energyHostView;
-	CPXYGraph															*currentPlot;
-	CPXYGraph															*voltagePlot;
-	CPXYGraph															*energyPlot;
+	CPXYGraph															*currentGraph;
+	CPXYGraph															*voltageGraph;
+	CPXYGraph															*energyGraph;
 	NSMutableArray												*currentPlotData;
 	NSMutableArray												*voltagePlotData;
 	NSMutableArray												*energyPlotData;
 	NSMutableArray												*energyPlotDates;
-	CPScatterPlot													*currentDataSourceLinePlot;
-	CPScatterPlot													*voltageDataSourceLinePlot;	
-	CPScatterPlot													*energyDataSourceLinePlot;
+	CPScatterPlot													*currentPlot;
+	CPScatterPlot													*voltagePlot;	
+	CPScatterPlot													*energyPlot;
 	CPXYPlotSpace													*currentPlotSpace;
 	CPXYPlotSpace													*voltagePlotSpace;
 	CPXYPlotSpace													*energyPlotSpace;
@@ -32,5 +32,9 @@
 
 - (void)addNewData:(NSData *)data;
 - (void)addNewEnergyPlotPoint:(float)value;
+
+- (IBAction)energyPlotVerticalRangeZoomIn:(id)sender;
+- (IBAction)energyPlotVerticalRangeZoomOut:(id)sender;
+
 
 @end
