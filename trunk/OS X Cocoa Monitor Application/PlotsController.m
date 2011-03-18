@@ -21,9 +21,9 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	[currentPlotData release];
 	[voltagePlotData release];
 	[energyPlotData release];
-	[currentPlot release];
-	[voltagePlot release];
-	[energyPlot release];
+	[currentGraph release];
+	[voltageGraph release];
+	[energyGraph release];
 	[energyPlotDates release];
 	[today release];
 	[super dealloc];
@@ -42,58 +42,57 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	
 
 	// Create graph from theme
-	currentPlot = [(CPXYGraph *)[CPXYGraph alloc] initWithFrame:CGRectZero];
-	voltagePlot = [(CPXYGraph *)[CPXYGraph alloc] initWithFrame:CGRectZero];
-	energyPlot = [(CPXYGraph *)[CPXYGraph alloc]  initWithFrame:CGRectZero];
+	currentGraph = [(CPXYGraph *)[CPXYGraph alloc] initWithFrame:CGRectZero];
+	voltageGraph = [(CPXYGraph *)[CPXYGraph alloc] initWithFrame:CGRectZero];
+	energyGraph = [(CPXYGraph *)[CPXYGraph alloc]  initWithFrame:CGRectZero];
 	
 	CPTheme *theme = [CPTheme themeNamed:kCPSlateTheme];
-	[currentPlot applyTheme:theme];	
-	[currentPlot setTitle: @"Current Waveform"];
-	[currentPlot setTitleDisplacement: CGPointMake(0, -10)];
-	currentPlot.plotAreaFrame.paddingTop = 10.0;
-	currentPlot.plotAreaFrame.paddingBottom = 10.0;
+	[currentGraph applyTheme:theme];	
+	[currentGraph setTitle: @"Current Waveform"];
+	[currentGraph setTitleDisplacement: CGPointMake(0, -10)];
+	currentGraph.plotAreaFrame.paddingTop = 10.0;
+	currentGraph.plotAreaFrame.paddingBottom = 10.0;
 	
-	[voltagePlot applyTheme: theme];
-	voltagePlot.title = @"Voltage Waveform";
-	voltagePlot.titleDisplacement = CGPointMake(0, -10);
-	voltagePlot.plotAreaFrame.paddingTop = 10.0;
-	voltagePlot.plotAreaFrame.paddingBottom = 10.0;
+	[voltageGraph applyTheme: theme];
+	voltageGraph.title = @"Voltage Waveform";
+	voltageGraph.titleDisplacement = CGPointMake(0, -10);
+	voltageGraph.plotAreaFrame.paddingTop = 10.0;
+	voltageGraph.plotAreaFrame.paddingBottom = 10.0;
 	
-	[energyPlot  applyTheme:theme];
-	energyPlot.title = @"Power";
-	energyPlot.titleDisplacement = CGPointMake(0, -10);
-	energyPlot.plotAreaFrame.paddingTop = 10.0;
-	energyPlot.plotAreaFrame.paddingBottom = 10.0;
-	energyPlot.plotAreaFrame.paddingLeft = 10.0;
-	energyPlot.plotAreaFrame.paddingRight = 10.0;
-	energyPlot.plotAreaFrame.cornerRadius = 10.0;
+	[energyGraph  applyTheme:theme];
+	energyGraph.title = @"Power";
+	energyGraph.titleDisplacement = CGPointMake(0, -10);
+	energyGraph.plotAreaFrame.paddingTop = 20.0;
+	energyGraph.plotAreaFrame.paddingBottom = 30.0;
+	energyGraph.plotAreaFrame.paddingLeft = 10.0;
+	energyGraph.plotAreaFrame.paddingRight = 10.0;
+	energyGraph.plotAreaFrame.cornerRadius = 10.0;
 	
 	
-	currentHostView.hostedLayer = currentPlot;
-	voltageHostView.hostedLayer = voltagePlot;
-	energyHostView.hostedLayer	= energyPlot;
+	currentHostView.hostedLayer = currentGraph;
+	voltageHostView.hostedLayer = voltageGraph;
+	energyHostView.hostedLayer	= energyGraph;
 	
 	// Setup scatter plot space
-	currentPlotSpace = (CPXYPlotSpace *)currentPlot.defaultPlotSpace;
+	currentPlotSpace = (CPXYPlotSpace *)currentGraph.defaultPlotSpace;
 	currentPlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(0) length:CPDecimalFromInt(99)];
 	currentPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(-2050) length:CPDecimalFromFloat(4100)];
-
+	
 	
 	
 	// Setup scatter plot space
-	voltagePlotSpace = (CPXYPlotSpace *)voltagePlot.defaultPlotSpace;
+	voltagePlotSpace = (CPXYPlotSpace *)voltageGraph.defaultPlotSpace;
 	voltagePlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(0) length:CPDecimalFromInt(99)];
 	voltagePlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromInt(-2050) length:CPDecimalFromFloat(4100)];
 	
 	// Setup scatter plot space
-	energyPlotSpace = (CPXYPlotSpace *)energyPlot.defaultPlotSpace;
+	energyPlotSpace = (CPXYPlotSpace *)energyGraph.defaultPlotSpace;
 	energyPlotSpace.xRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0) length:CPDecimalFromInt(99)];
-	energyPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(-100) length:CPDecimalFromFloat(2000)];
-	//energyPlotSpace.allowsUserInteraction = YES;
+	energyPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0) length:CPDecimalFromFloat(2000)];
 	energyPlotSpace.delegate = self;
 	
 	// Axes
-	CPXYAxisSet *axisSet = (CPXYAxisSet *)currentPlot.axisSet;
+	CPXYAxisSet *axisSet = (CPXYAxisSet *)currentGraph.axisSet;
 	CPXYAxis *x = axisSet.xAxis;
 	x.majorTickLineStyle = nil;
 	x.majorIntervalLength = CPDecimalFromString(@"25");
@@ -108,7 +107,7 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	
 	
 	// Axes
-	axisSet = (CPXYAxisSet *)voltagePlot.axisSet;
+	axisSet = (CPXYAxisSet *)voltageGraph.axisSet;
 	x = axisSet.xAxis;
 	x.majorTickLineStyle = nil;
 	x.majorIntervalLength = CPDecimalFromString(@"25");
@@ -122,7 +121,7 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	y.orthogonalCoordinateDecimal = CPDecimalFromFloat(-100);
 	
 	// Axes
-	axisSet = (CPXYAxisSet *)energyPlot.axisSet;
+	axisSet = (CPXYAxisSet *)energyGraph.axisSet;
 	x = axisSet.xAxis;
 	
 	NSInteger oneXUnit = 60;
@@ -156,33 +155,33 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	
 	
 	// Create a plot that uses the data source method
-	voltageDataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
-	voltageDataSourceLinePlot.identifier = VOLTAGE_PLOT;
-	voltageDataSourceLinePlot.dataLineStyle.lineWidth = 1.5f;
-	voltageDataSourceLinePlot.dataLineStyle.lineColor = [CPColor blueColor];
-	voltageDataSourceLinePlot.dataSource = self;
-	[voltagePlot addPlot:voltageDataSourceLinePlot];
+	voltagePlot = [[[CPScatterPlot alloc] init] autorelease];
+	voltagePlot.identifier = VOLTAGE_PLOT;
+	voltagePlot.dataLineStyle.lineWidth = 1.5f;
+	voltagePlot.dataLineStyle.lineColor = [CPColor blueColor];
+	voltagePlot.dataSource = self;
+	[voltageGraph addPlot:voltagePlot];
 	
 	// Create a plot that uses the data source method
-	currentDataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
-	currentDataSourceLinePlot.identifier = CURRENT_PLOT;
-	currentDataSourceLinePlot.dataLineStyle.lineWidth = 1.5f;
-	currentDataSourceLinePlot.dataLineStyle.lineColor = [CPColor blueColor];
-	currentDataSourceLinePlot.dataSource = self;
-	[currentPlot addPlot:currentDataSourceLinePlot];
+	currentPlot = [[[CPScatterPlot alloc] init] autorelease];
+	currentPlot.identifier = CURRENT_PLOT;
+	currentPlot.dataLineStyle.lineWidth = 1.5f;
+	currentPlot.dataLineStyle.lineColor = [CPColor blueColor];
+	currentPlot.dataSource = self;
+	[currentGraph addPlot:currentPlot];
 	
 	
 	
 	// Create a plot that uses the data source method
 	CPColor *energyPlotLineColor = [[CPColor blueColor] colorWithAlphaComponent:0.5];
-	energyDataSourceLinePlot = [[[CPScatterPlot alloc] init] autorelease];
-	energyDataSourceLinePlot.identifier = ENERGY_PLOT;
-	energyDataSourceLinePlot.dataLineStyle.lineWidth = 2.f;
-	energyDataSourceLinePlot.dataLineStyle.lineColor = energyPlotLineColor;
-	energyDataSourceLinePlot.dataSource = self;
-	energyDataSourceLinePlot.areaFill = [CPFill fillWithColor:energyPlotLineColor];	
-	energyDataSourceLinePlot.areaBaseValue = CPDecimalFromInt(0);
-	[energyPlot addPlot:energyDataSourceLinePlot];
+	energyPlot = [[[CPScatterPlot alloc] init] autorelease];
+	energyPlot.identifier = ENERGY_PLOT;
+	energyPlot.dataLineStyle.lineWidth = 2.f;
+	energyPlot.dataLineStyle.lineColor = energyPlotLineColor;
+	energyPlot.dataSource = self;
+	energyPlot.areaFill = [CPFill fillWithColor:energyPlotLineColor];	
+	energyPlot.areaBaseValue = CPDecimalFromInt(0);
+	[energyGraph addPlot:energyPlot];
 }
 
 #pragma mark -
@@ -205,6 +204,10 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 
 	return count;
 }
+
+
+
+
 
 -(NSNumber *)numberForPlot:(CPPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
 {
@@ -251,7 +254,6 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 
 
 
-
 - (void)addNewData:(NSData *)data
 {
 	short			 tempShort;
@@ -261,18 +263,22 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	NSNumber	 *num = nil;
 	id				 plotDataToUpdate;
 	id				 plotToReload;
+	//id				 plotSpaceToScale;
 
 	[data getBytes: &packetType range: NSMakeRange(0, 1)];
 	[data getBytes: &reloadFlag range: NSMakeRange(1, 1)];	
 	
 	switch (packetType) {
+			
 		case 0x63:
 			plotDataToUpdate	= currentPlotData;
-			plotToReload			= currentDataSourceLinePlot;
+			plotToReload			= currentPlot;
+			//plotSpaceToScale  = (CPXYPlotSpace *)currentGraph.defaultPlotSpace;
 			break;
 		case 0x76:
 			plotDataToUpdate  = voltagePlotData;
-			plotToReload			=	voltageDataSourceLinePlot;
+			plotToReload			=	voltagePlot;
+			//plotSpaceToScale  = (CPXYPlotSpace *)voltageGraph.defaultPlotSpace;
 			break;
 		default:
 			return;
@@ -289,10 +295,14 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 		[plotDataToUpdate removeObjectsInRange: NSMakeRange(0, i-100)];
 	}
 	
-	if (reloadFlag == 1) {
-		[plotToReload reloadData];
+	if (reloadFlag == 1) {		
+		[plotToReload reloadData];		
+		//[plotSpaceToScale scaleToFitPlots:[NSArray arrayWithObject:plotToReload]];		
 	}
 }
+
+
+
 
 - (void)addNewEnergyPlotPoint:(float)value
 {
@@ -301,13 +311,40 @@ static NSString * const ENERGY_PLOT  = @"Energy Plot";
 	num = [NSNumber numberWithDouble: [[NSDate date] timeIntervalSinceDate: today]];
 	[energyPlotDates addObject: num];
 	
-	CPXYAxisSet *axisSet = (CPXYAxisSet *)energyPlot.axisSet;
+	CPXYAxisSet *axisSet = (CPXYAxisSet *)energyGraph.axisSet;
 	CPPlotRange *newRange = [CPPlotRange plotRangeWithLocation: CPDecimalFromFloat([[energyPlotDates lastObject] floatValue] - 100.00) length:CPDecimalFromFloat(100.0)];	
 	energyPlotSpace.xRange = newRange;
 	axisSet.yAxis.orthogonalCoordinateDecimal = CPDecimalFromFloat(newRange.locationDouble+8.0F);
-	[energyDataSourceLinePlot reloadData];
+	[energyPlot reloadData];
 
 }
+
+
+
+
+- (IBAction)energyPlotVerticalRangeZoomIn:(id)sender
+{
+	energyPlotSpace = (CPXYPlotSpace *)energyGraph.defaultPlotSpace;
+	double oldYRangeLength = energyPlotSpace.yRange.lengthDouble;
+	float scaleFactor = 0.5;
+	float newYRangeLength = oldYRangeLength * scaleFactor;
+	energyPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0) length:CPDecimalFromFloat(newYRangeLength)];
+}
+
+
+
+- (IBAction)energyPlotVerticalRangeZoomOut:(id)sender
+{
+	double oldYRangeLength = energyPlotSpace.yRange.lengthDouble;
+	float scaleFactor = 2.0;
+	float newYRangeLength = oldYRangeLength * scaleFactor;
+	energyPlotSpace.yRange = [CPPlotRange plotRangeWithLocation:CPDecimalFromFloat(0) length:CPDecimalFromFloat(newYRangeLength)];
+}
+
+
+
+
+
 
 //- (CPPlotRange *)plotSpace:(CPPlotSpace *)space
 //		 willChangePlotRangeTo:(CPPlotRange *)newRange
